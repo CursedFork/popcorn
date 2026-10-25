@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0b0a09;
+  --color-panel: #161412;
+  --color-panel-2: #201d1a;
+  --color-line: #332e29;
+  --color-field: #7a7068; /* edges of text boxes, at least 3:1 against every surface */
+  --color-text: #f1ebe3;
+  --color-muted: #b3a89a;
+  --color-gold: #f2b134;
+  --color-gold-deep: #c98a12;
+  --font-display: Georgia, "Times New Roman", serif;
+}
+
+html {
+  background: var(--color-ink);
+  color: var(--color-text);
+  color-scheme: dark;
+  /* The sticky header must never cover whatever has keyboard focus. */
+  scroll-padding-top: 5rem;
+  -webkit-tap-highlight-color: rgb(242 177 52 / 0.25);
+}
+
+/* No double-tap-to-zoom delay on controls. */
+a,
+button,
+input,
+summary,
+label {
+  touch-action: manipulation;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+/* Scrolling inside a window doesn't scroll the page behind it. */
+dialog {
+  overscroll-behavior: contain;
+}
+
+/* 993 posters: the browser skips drawing the ones far off screen. */
+.card-item {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 24rem;
+}
+
+body {
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background:
+    radial-gradient(60rem 30rem at 50% -10rem, rgb(242 177 52 / 0.1), transparent 70%),
+    var(--color-ink);
+}
+
+/* Visible focus for keyboard users, everywhere. */
+:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* A skip link that sits invisibly in the page and appears when it gets keyboard focus. */
+.skip-inline {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.skip-inline:focus {
+  position: static;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip-path: none;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background: var(--color-gold);
+  color: #1a1204;
+  font-weight: 600;
+}
+
+/* Lets keyboard users jump past the nav. */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  background: var(--color-gold);
+  color: #1a1204;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  z-index: 50;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* The page behind an open dialog (detail view or filter drawer) doesn't scroll. */
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

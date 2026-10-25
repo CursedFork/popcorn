@@ -1,0 +1,86 @@
+---
+import '../styles/global.css';
+import { site } from '../config/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description = site.tagline } = Astro.props;
+// The home page says what the site is. Other pages put their own name first.
+const pageTitle = title ? `${title} | ${site.name}` : `${site.name} | ${site.titleTagline}`;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+// Astro.site is only known once SITE_URL is set (see the README), and links need it to be absolute.
+const canonical = Astro.site ? new URL(path, Astro.site).href : null;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content={site.themeColor} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="icon" type="image/svg+xml" href="/popcorn-bucket.svg" />
+    <link rel="preconnect" href="https://image.tmdb.org" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="border-b border-line bg-ink/80 backdrop-blur sticky top-0 z-40">
+      <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
+        <a href="/" class="flex items-center gap-2 font-display text-2xl font-bold tracking-tight text-gold">
+          <img src="/popcorn-bucket.svg" alt="" width="36" height="36" class="h-9 w-9" />
+          <span translate="no">{site.name}</span>
+        </a>
+        <nav aria-label="Main">
+          <ul class="flex gap-1 sm:gap-2">
+            {
+              site.nav.map((link) => {
+                const current = link.href === path;
+                return (
+                  <li>
+                    <a
+                      href={link.href}
+                      aria-current={current ? 'page' : undefined}
+                      class:list={[
+                        'rounded-full px-4 py-2.5 text-sm font-medium transition-colors',
+                        current
+                          ? 'bg-gold text-[#1a1204]'
+                          : 'text-muted hover:bg-panel-2 hover:text-text',
+                      ]}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                );
+              })
+            }
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="mx-auto max-w-7xl scroll-mt-20 px-4 py-8">
+      <slot />
+    </main>
+
+    <footer id="site-footer" class="mt-12 border-t border-line">
+      <p class="mx-auto max-w-7xl px-4 py-6 text-sm text-muted">
+        {site.tmdbNotice}
+      </p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../config/site';
+
+// The newest fetch date in movies.json. The file doesn't exist until the first lookup run.
+const files = import.meta.glob('../data/movies.json', { eager: true, import: 'default' });
+const movies = (Object.values(files)[0] ?? []) as { fetchedAt?: string }[];
+const latest = movies.map((m) => m.fetchedAt ?? '').sort().pop() || null;
+
+const refreshed = latest
+  ? new Date(latest + 'T00:00:00').toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+  : 'not yet (no data has been fetched)';
+---
+
+<Base title="About" description={`About ${site.name}, a personal ranked movie list.`}>
+  <h1 class="font-display text-4xl font-bold">About {site.name}</h1>
+
+  <div class="mt-6 max-w-prose space-y-4 text-lg leading-relaxed text-muted">
+    <p>
+      {site.name} is my personal list of movies, ranked by me. The number on every poster is its
+      spot on my list, and that order is never changed. You can browse, search, filter, share a
+      view with a friend, or let the site pick a random movie for you.
+    </p>
+    <p>There are no ads, no accounts, and nothing here earns any money.</p>
+  </div>
+
+  <section aria-labelledby="credits" class="mt-10 max-w-prose rounded-xl border border-line bg-panel p-6">
+    <h2 id="credits" class="font-display text-2xl font-bold">Credits</h2>
+
+    <!-- Approved TMDB logo, kept much smaller than the Popcorn name as TMDB requires. -->
+    <img src="/tmdb-logo.svg" alt="TMDB" width="128" height="9" class="mt-4 h-auto w-32" />
+
+    <p class="mt-4 text-text">{site.tmdbNotice}</p>
+    <p class="mt-2 text-muted">
+      Movie details and posters come from{' '}
+      <a class="text-gold underline underline-offset-4" href="https://www.themoviedb.org/">TMDB</a>.
+    </p>
+    <p class="mt-4 text-muted">
+      Data last refreshed: <strong class="text-text">{refreshed}</strong>
+    </p>
+  </section>
+</Base>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Popcorn bucket">
+  <!-- popcorn puffs -->
+  <g fill="#fff3d6" stroke="#c98a12" stroke-width="1.5">
+    <circle cx="20" cy="20" r="8"/>
+    <circle cx="32" cy="14" r="9"/>
+    <circle cx="44" cy="20" r="8"/>
+    <circle cx="26" cy="26" r="7"/>
+    <circle cx="38" cy="26" r="7"/>
+  </g>
+  <!-- bucket -->
+  <path d="M13 28h38l-5 32H18z" fill="#f2b134"/>
+  <!-- red-style stripes in dark ink so it reads on a dark page -->
+  <path d="M23 28l1.6 32h-4.2zM33.5 28v32h-3V28zM41 28l-1.6 32h4.2z" fill="#0b0a09" opacity="0.8"/>
+  <rect x="11" y="26" width="42" height="5" rx="2" fill="#c98a12"/>
+</svg>

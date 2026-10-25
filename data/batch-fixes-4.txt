@@ -1,0 +1,11 @@
+# Batch fixes, round 4: your answers to my questions. Same format as the others.
+# Apply with:  npm run fix-batch -- --file data/batch-fixes-4.txt
+160  35320    # [guess] School of Life  =>  School of Life (2005), a Canadian family comedy about a middle school
+600  647250   # [sure]  The Machine  =>  The Machine (2023), the Bert Kreischer movie
+678  31242    # [guess] Just 4 Kicks  =>  Just for Kicks (2003), a kids' soccer film (only candidate)
+629  9823     # [sure]  Mortal Kombat Conquest  =>  Mortal Kombat: Annihilation (1997), the second older live-action movie
+736  9894    # [sure]  Larry the Cable Guy  =>  The Cable Guy (1996), the Jim Carrey movie
+790  524348   # [sure]  The Torture Report  =>  The Report (2019)
+828  1732449 # [sure]  The 47 Ronin - Part 1  =>  The 47 Ronin (Part 1): Indignation (1985)
+829  1664644  # [sure]  The 47 Ronin - Part 2  =>  The 47 Ronin (Part 2): No Return (1985)
+958  505177   # [sure]  10 x 10  =>  10x10 (2018)

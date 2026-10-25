@@ -1,0 +1,85 @@
+---
+import Base from '../layouts/Base.astro';
+import BarChart from '../components/BarChart.astro';
+import { loadGridMovies } from '../lib/load';
+import { computeStats, movieLink } from '../lib/stats';
+
+const stats = computeStats(loadGridMovies());
+const tieNote = 'Ties are listed A to Z.';
+---
+
+<Base title="Stats" description="Numbers for the whole movie list: decades, genres, stars, directors and studios.">
+  <h1 class="font-display text-4xl font-bold">Stats</h1>
+  <p class="mt-3 max-w-prose text-lg text-muted">
+    Numbers for the whole list. Click any bar or name to see those movies on the home page.
+  </p>
+
+  <dl class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="rounded-2xl border border-line bg-panel p-5">
+      <dt class="text-sm text-muted">Total movies</dt>
+      <dd class="mt-1 font-display text-4xl font-bold text-gold">{stats.total}</dd>
+      {
+        stats.notReleased > 0 && (
+          <dd class="mt-1 text-sm text-muted">{stats.notReleased} not released yet</dd>
+        )
+      }
+    </div>
+
+    <div class="rounded-2xl border border-line bg-panel p-5">
+      <dt class="text-sm text-muted">Average release year</dt>
+      <dd class="mt-1 font-display text-4xl font-bold text-gold">
+        {stats.averageYear !== null ? stats.averageYear.toFixed(1) : 'None yet'}
+      </dd>
+    </div>
+
+    {
+      stats.oldest && (
+        <div class="rounded-2xl border border-line bg-panel p-5">
+          <dt class="text-sm text-muted">Oldest movie</dt>
+          <dd class="mt-1">
+            <a href={movieLink(stats.oldest.number)} class="inline-block py-1 font-display text-xl font-bold text-text underline-offset-4 hover:text-gold hover:underline">
+              {stats.oldest.title}
+            </a>
+          </dd>
+          <dd class="text-sm text-muted">
+            {stats.oldest.year}, number {stats.oldest.number} on the list
+          </dd>
+        </div>
+      )
+    }
+
+    {
+      stats.newest && (
+        <div class="rounded-2xl border border-line bg-panel p-5">
+          <dt class="text-sm text-muted">Newest released movie</dt>
+          <dd class="mt-1">
+            <a href={movieLink(stats.newest.number)} class="inline-block py-1 font-display text-xl font-bold text-text underline-offset-4 hover:text-gold hover:underline">
+              {stats.newest.title}
+            </a>
+          </dd>
+          <dd class="text-sm text-muted">
+            {stats.newest.year}, number {stats.newest.number} on the list
+          </dd>
+        </div>
+      )
+    }
+  </dl>
+
+  <div class="mt-6">
+    <BarChart
+      title="Movies per decade"
+      rows={stats.byDecade}
+      unit="movies"
+      note={stats.notReleased > 0
+        ? `Counts released movies only, so ${stats.notReleased} not-yet-released ${stats.notReleased === 1 ? 'movie is' : 'movies are'} left out.`
+        : undefined}
+    />
+  </div>
+
+  <div class="mt-6 grid gap-6 lg:grid-cols-2">
+    <BarChart title="Top 10 genres" rows={stats.genres} unit="movies" note={tieNote} />
+    <BarChart title="Top 10 stars" rows={stats.stars} unit="movies" note={`The five billed highest in each movie. ${tieNote}`} />
+    <BarChart title="Top 10 directors" rows={stats.directors} unit="movies" note={tieNote} />
+    <BarChart title="Top 10 studios" rows={stats.studios} unit="movies" note={`Similar company names are merged. ${tieNote}`} />
+  </div>
+</Base>
