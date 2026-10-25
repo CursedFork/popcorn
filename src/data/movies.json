@@ -23642,34 +23642,33 @@
     "input": {
       "title": "Batman and Robin",
       "year": null,
-      "override": null
+      "override": 415
     },
-    "tmdbId": 93560,
-    "officialTitle": "Batman and Robin",
-    "releaseDate": "1949-05-26",
-    "year": 1949,
-    "decade": "1940s",
+    "tmdbId": 415,
+    "officialTitle": "Batman & Robin",
+    "releaseDate": "1997-06-20",
+    "year": 1997,
+    "decade": "1990s",
     "genres": [
       "Action",
       "Science Fiction",
-      "Thriller",
-      "Adventure",
-      "Crime"
+      "Adventure"
     ],
-    "overview": "This 15-chapter serial pits Batman and Robin against The Wizard, who uses a device that allows him to control machinery to hold the city hostage.",
-    "posterPath": "/411pEyeqP5rLS6Zc9batSRL0c8G.jpg",
+    "overview": "Batman and his sidekick Robin attempt to the foil the sinister schemes of a deranged set of new villains, most notably the melancholy Mr. Freeze, who wants to make Gotham City into an arctic region, and the sultry Poison Ivy, a botanical femme fatale. As the Dynamic Duo contend with these bad guys, a third hero, Batgirl, joins the ranks of the city's crime-fighters.",
+    "posterPath": "/i7hEUpDuMN2LOrCEifFyGSHZQSY.jpg",
     "stars": [
-      "Robert Lowery",
-      "Johnny Duncan",
-      "Lyle Talbot",
-      "Jane Adams",
-      "Ralph Graves"
+      "George Clooney",
+      "Chris O'Donnell",
+      "Arnold Schwarzenegger",
+      "Uma Thurman",
+      "Alicia Silverstone"
     ],
     "directors": [
-      "Spencer Gordon Bennet"
+      "Joel Schumacher"
     ],
     "studios": [
-      "Sam Katzman Productions"
+      "Warner Bros. Pictures",
+      "Polygram Pictures"
     ],
     "status": "matched",
     "fetchedAt": "2026-10-25"
