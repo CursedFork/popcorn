@@ -28083,34 +28083,33 @@
     "input": {
       "title": "Gone in 60 Seconds",
       "year": null,
-      "override": null
+      "override": 9679
     },
-    "tmdbId": 16246,
-    "officialTitle": "Gone in 60 Seconds",
-    "releaseDate": "1974-07-28",
-    "year": 1974,
-    "decade": "1970s",
+    "tmdbId": 9679,
+    "officialTitle": "Gone in Sixty Seconds",
+    "releaseDate": "2000-06-09",
+    "year": 2000,
+    "decade": "2000s",
     "genres": [
       "Action",
       "Crime",
-      "Thriller",
-      "Drama"
+      "Thriller"
     ],
-    "overview": "Insurance investigator Maindrian Pace and his team lead double-lives as unstoppable car thieves. When a South American drug lord pays Pace to steal 48 cars for him, all but one, a 1973 Ford Mustang, are in the bag. As Pace prepares to rip-off the fastback, codenamed \"Eleanor\", in Long Beach, he is unaware that his boss has tipped off the police after a business dispute.",
-    "posterPath": "/qYyeAodAOe4nHuzkHdN35ValzLT.jpg",
+    "overview": "Ex-car thief Randall Raines is forced out of retirement to save his brother Kip after a boost gone wrong. With the help of allies old and new, they race to meet the demands of notorious crime boss Raymond Calitri as the police are in hot pursuit.",
+    "posterPath": "/igB7rmmnMYepq6dycwjEHJzCy6h.jpg",
     "stars": [
-      "H.B. Halicki",
-      "Marion Busia",
-      "Jerry Daugirda",
-      "James McIntyre",
-      "George Cole"
+      "Nicolas Cage",
+      "Angelina Jolie",
+      "Giovanni Ribisi",
+      "Robert Duvall",
+      "Delroy Lindo"
     ],
     "directors": [
-      "H.B. Halicki"
+      "Dominic Sena"
     ],
     "studios": [
-      "Halicki Productions",
-      "H.B. Halicki Mercantile Co."
+      "Touchstone Pictures",
+      "Jerry Bruckheimer Films"
     ],
     "status": "matched",
     "fetchedAt": "2026-10-25"
