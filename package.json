@@ -15,7 +15,9 @@
     "refresh": "node --env-file=.env scripts/lookup.mjs --all",
     "fix": "node --env-file=.env scripts/fix.mjs",
     "fix-batch": "node --env-file=.env scripts/fix-batch.mjs",
-    "test:filters": "node scripts/test-filters.mts"
+    "add": "node --env-file=.env scripts/add.mjs",
+    "test:filters": "node scripts/test-filters.mts",
+    "test:add": "node scripts/test-add.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^7.1.1",

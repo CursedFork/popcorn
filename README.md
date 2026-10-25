@@ -43,7 +43,7 @@ Your list lives in `data/movies.txt`. One movie per line: a number, the title, a
 - **Your numbers are yours.** They are the ranking, and none of the scripts ever change or renumber them on their own. Right now they run from 1 to 993 with no gaps, and *Avengers: Doomsday* is the last line.
 - A line that starts with `#` is a comment and is ignored. This is also how you drop a movie without losing its number: put a `#` in front of it.
 - **Add the year whenever you can.** Titles like "Halloween" or "Carrie" belong to several movies, and the year picks the right one. Without it, the lookup may flag the movie for your review.
-- The saved data, `data/overrides.json` and the fix files all refer to movies by these numbers. If you ever move or renumber lines, everything has to be renumbered together, so ask Claude to do it rather than editing by hand.
+- The saved data, `data/overrides.json` and the fix files all refer to movies by these numbers. To insert a movie in the middle, use `npm run add` (see below), which renumbers everything together. Do not renumber by editing the files by hand.
 
 Check the file for typos before looking anything up (no internet needed):
 
@@ -52,6 +52,24 @@ npm run check-list
 ```
 
 It reports lines it cannot read, duplicate numbers, and gaps in the numbering. Gaps are fine. They just mean a number has no movie yet.
+
+### Adding a movie at a certain rank
+
+Because your numbers are the ranking, putting a new movie at, say, #210 pushes every movie after it down by one. `npm run add` does all of that for you in one step:
+
+```bash
+npm run add -- --dry "210. The Batman (2022)"    # shows the plan, changes nothing
+npm run add -- "210. The Batman (2022)"          # does it
+```
+
+It inserts the line, moves every later number down by one in all four places that store numbers (`data/movies.txt`, the saved data, `data/overrides.json` and the `batch-fixes` files), and then runs the lookup for just the new movie. It finishes by printing what the movie matched, with its director and stars, so you can catch a wrong pick.
+
+- **A new number at the very end** (the next number after your last movie) moves nothing.
+- **Several at once** works. Give each its own number, and each ends up at the number you gave: `npm run add -- "100. One (2020)" "500. Two (2021)"`.
+- **It refuses** a movie that is already on your list (add the year if it is a different film, or use `--allow-duplicate`), a number that is out of range, and a line with no number.
+- **It makes a backup** of every file it changes in `data/backups/` (ignored by git) before touching anything. To undo, copy those files back.
+- **If the lookup fails** (no internet, say), the numbers are already updated. Run `npm run lookup` to finish.
+- After adding, run `npm run test:filters` and `npm run build`, then commit and push to update the live site.
 
 ## Running the lookup
 
@@ -117,7 +135,7 @@ npm run fix-batch -- --dry --file data/batch-fixes.txt   # checks the file, chan
 npm run fix-batch -- --file data/batch-fixes.txt         # applies it
 ```
 
-**Drop a movie:** put a `#` in front of its line in `data/movies.txt`, then run `npm run lookup`. The movie disappears from the site, and its number is left empty as a gap. Gaps are fine for the site, but if you want the numbers to run 1 to the end again, ask Claude to renumber everything together (the list, the saved data, the overrides and the fix files).
+**Drop a movie:** put a `#` in front of its line in `data/movies.txt`, then run `npm run lookup`. The movie disappears from the site, and its number is left empty as a gap. Gaps are fine for the site. If you want the numbers to run 1 to the end again, ask Claude to close the gaps, because everything (the list, the saved data, the overrides and the fix files) has to be renumbered together. There is no command for closing gaps yet. A new movie added into a gap with `npm run add` simply fills it without moving anything.
 
 ## Refreshing the data (every few months)
 
@@ -148,6 +166,7 @@ To merge two more names, add a line of `"Variant name": "Display name"` and rebu
 
 ```bash
 npm run test:filters   # 37 checks on filtering, ordering, search, sharing, stats and descriptions
+npm run test:add       # 20 checks that npm run add moves every number correctly
 npm run build          # makes the real site in the dist folder (this is what Vercel does)
 npm run preview        # opens that built site so you can click around
 ```

@@ -26,3 +26,4 @@ pnpm-debug.log*
 # local tool settings and generated reports (rebuilt by the lookup scripts)
 .claude/
 data/review-report.md
+data/backups/

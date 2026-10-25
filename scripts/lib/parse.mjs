@@ -31,8 +31,8 @@ export function parseList(text) {
       year = Number(withYear[2]);
     }
 
-    if (number < 1 || number > 1000) {
-      unparsed.push({ lineNo, text: line, reason: 'number is outside 1 to 1000' });
+    if (number < 1 || number > 9999) {
+      unparsed.push({ lineNo, text: line, reason: 'number is outside 1 to 9999' });
       return;
     }
     if (firstSeen.has(number)) {
