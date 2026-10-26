@@ -182,7 +182,7 @@
 179. Step Brothers
 180. Dumb and Dumber
 181. Taladega Nights
-182. Kicking and Screaming
+182. Kicking & Screaming (2005)
 183. Jumanji
 184. Jumanji (2017)
 185. Jumanji (2019)
@@ -205,7 +205,7 @@
 202. Fast and Furious 6
 203. Furious 7
 204. Hercules (2014)
-205. The Tooth Fairy
+205. The Tooth Fairy (2010)
 206. Free Guy
 207. Planet 51
 208. Journey 2: The Mysterious Island
@@ -218,7 +218,7 @@
 215. Kung Fu Panda
 216. Kung Fu Panda 2
 217. Kung Fu Panda 3
-218. Snow White
+218. Snow White and the Seven Dwarfs (1937)
 219. Cinderella
 220. Moana
 221. Frozen
@@ -284,7 +284,7 @@
 281. The Good Dinosaur
 282. Inside Out
 283. Turning Red
-284. Spirit
+284. Spirit: Stallion of the Cimarron (2002)
 285. Monsters Inc
 286. Monsters University
 287. Wall E
@@ -297,7 +297,7 @@
 294. Star Wars VII: The Force Awakens
 295. Star Wars VIII: The Last Jedi
 296. Star Wars IX: The Rise of Skywalker
-297. Solo
+297. Solo: A Star Wars Story (2018)
 298. Rogue One
 299. Star Wars: The Clone Wars
 300. Paul Blart Mall Cop
@@ -390,610 +390,612 @@
 387. Trading Places
 388. Footloose
 389. Scary Stories to Tell in the Dark
-390. Lord of the Rings
-391. Jurassic Park
-392. Jurassic World
-393. Jurassic World 2
-394. Jurassic World 3
-395. The Karate Kid
-396. The Karate Kid 2
-397. The Karate Kid 3
-398. The Karate Kid (2014)
-399. A Whisker Away
-400. Your Name
-401. A Silent Voice
-402. Grease
-403. Glass
-404. The Lego Ninjago Movie
-405. The Lorax
-406. Romeo And Juliet
-407. Gnomeo and Juliet
-408. Despicable Me
-409. Despicable Me 2
-410. Despicable Me 3
-411. Pokemon the First Movie
-412. Pokemon the Movie 2000
-413. Pokemon 3: The Movie
-414. Pokemon 4-Ever
-415. Pokemon Heroes
-416. Pokemon the Movie: Kyurem vs the Sword of Justice
-417. The Blindside
-418. Drumline
-419. Benchwarmers
-420. Joe Dirt
-421. Uncle Buck
-422. Tommy Boy
-423. Surf's Up
-424. Happy Feet
-425. Happy Feet 2
-426. Silence of the Lambs
-427. The Bourne Identity
-428. The Bourne Supremacy
-429. The Bourne Ultimatum
-430. The Hangover
-431. The Hangover 2
-432. The Hangover 3
-433. The Starving Games
-434. Taken
-435. American Pie
-436. American Pie 2
-437. American Psycho
-438. Trolls
-439. Zombies
-440. Zombies 2
-441. Zombies 3
-442. Descendants
-443. Descendants 2
-444. High School Musical
-445. High School Musical 2
-446. High School Musical 3
-447. Sharpay's Fabulous Adventure
-448. Camp Rock
-449. Radio Rebel
-450. How to Build a Better Boy
-451. Zapped
-452. Sky High
-453. Teen Beach Movie
-454. Mrs Doubtfire
-455. Honey I Shrunk the Kids
-456. Flubber
-457. Nutty Professor
-458. Bad Hair Day
-459. Pitch Perfect
-460. Pitch Perfect 2
-461. Cloud 9
-462. Freaky Friday
-463. Thunderstruck
-464. Are We There Yet
-465. Are We Done Yet
-466. Sixteen Candles
-467. Year One
-468. Fifty Shades of Gray
-469. Twilight
-470. The Twilight Saga: New Moon
-471. The Twilight Saga: Eclipse
-472. Naked
-473. Flushed Away
-474. Minions
-475. Chicken Run
-476. Chicken Little
-477. Matilda
-478. Bee Movie
-479. Sing
-480. Secret Life of Pets
-481. Cloudy With a Chance of Meatballs
-482. Cloudy With a Chance of Meatballs 2
-483. Boss Baby
-484. Astro Boy
-485. Little Rascals
-486. Little Rascals Save the Day
-487. Jennifer's Body
-488. The Happytime Murders
-489. Ghostbusters
-490. Ghostbusters (2016)
-491. It Follows
-492. Smile
-493. The Black Phone
-494. Death Note
-495. Children of the Corn
-496. Fear Street Part One 1994
-497. Fear Street Part Two 1978
-498. Fear Street Part Three 1666
-499. Pet
-500. The Conjuring
-501. The Conjuring 2
-502. The Purge
-503. The Purge 2
-504. The Purge Election Year
-505. Halloweentown
-506. The Boy
-507. The Night of the Living Dead
-508. I am Mother
-509. Ex Machina
-510. Hellraiser
-511. The Exorcist
-512. Back to the Future
-513. Back to the Future 2
-514. Back to the Future 3
-515. Indiana Jones and the Temple of Doom
-516. Indiana Jones and the Crystal Skull
-517. Indiana Jones: The Last Crusade
-518. Face Off
-519. National Treasure
-520. The Sorcerer's Apprentice
-521. Jaws
-522. Jaws 2
-523. The Meg
-524. Sweet Girl
-525. Lethal Weapon
-526. Legally Blonde
-527. True Memoirs of an International Assassin
-528. Uncharted
-529. Wonder Woman
-530. Wonder Woman 1984
-531. Good Will Hunting
-532. E.T.
-533. The Goonies
-534. Megan
-535. Fight Club
-536. Roadhouse
-537. Brain on Fire
-538. 5 Feet Apart
-539. A Land Before Time
-540. Why Him
-541. Meet the Parents
-542. Elvis
-543. Sister Act
-544. The Great Outdoors
-545. The Wizard of Oz
-546. Oz the Great and Powerful
-547. The Hunt for Red October
-548. The Commitments
-549. Tron: Legacy
-550. Stripes
-551. Get Smart
-552. Who Framed Rodger Rabbit
-553. Space Jam
-554. Heavyweights
-555. Joy
-556. Passengers
-557. The Martian
-558. Demon Slayer: Mugen Train
-559. Expelled from Paradise
-560. Parental Guidance
-561. The Dark Crystal
-562. Labyrinth
-563. The Water Horse
-564. The Never Ending Story
-565. Maleficent
-566. Borat: Cultural Learnings of America to Make Benefit Glorious Nation of Kazakhstan
-567. Borat: Subsequent Moviefilm
-568. Coming to America
-569. Shrek
-570. Shrek 2
-571. Shrek the Third
-572. Puss in Boots
-573. Puss in Boots: The Last Wish
-574. Daddy Day Care
-575. Mr Mom
-576. Dr Dolittle
-577. Open Season
-578. Over the Hedge
-579. Paper Towns
-580. The Fault in our Stars
-581. Predator
-582. Alien
-583. Alien 2
-584. Ramona and Beezus
-585. Because of Winn Dixie
-586. Robin Hood: Men in Tights
-587. Robin Hood: Prince of Thieves
-588. 300
-589. The Ring
-590. The Ring 2
-591. The Duff
-592. Adventures in Babysitting
-593. Jingle All the Way
-594. Kindergarden Cop
-595. Stuart Little
-596. Coraline
-597. Monster House
-598. Old
-599. Dungeons and Dragons: Honor Among Thieves
-600. The Machine
-601. Anabelle
-602. The Bye Bye Man
-603. The Smurfs
-604. The Smurfs 2
-605. Bruce Almighty
-606. Johnny English
-607. Johnny English Reborn
-608. Rat Race
-609. Mr Bean
-610. Mr Bean the Ultimate Disaster Movie
-611. The Ant Bully
-612. The Nut Job
-613. The 40 Year Old Virgin
-614. Horton Hears a Who
-615. Dinner for Schmucks
-616. Fantastic Beasts and Where to Find Them
-617. The Nun
-618. The Maze Runner
-619. Maze Runner: The Scorch Trials
-620. The Mask
-621. Batman (1989)
-622. Batman Returns
-623. Batman Forever
-624. Batman and Robin
-625. American Sniper
-626. Mr Peabody and Sherman
-627. Mortal Kombat (2021)
-628. Mortal Kombat
-629. Mortal Kombat Conquest
-630. Howard the Duck
-631. The Matrix
-632. Bill and Ted's Excellent Adventure
-633. Spaceballs
-634. A League of Their Own
-635. Divergent
-636. Avatar
-637. Lucy
-638. Poltergeist
-639. Robots
-640. Meet the Robinsons
-641. Edward Scissorhands
-642. Corpse Bride
-643. Monsters Versus Aliens
-644. War Games
-645. The Iron Giant
-646. Teen Wolf
-647. Kill Bill
-648. Holes
-649. Office Space
-650. A Christmas Story
-651. A Cinderella Story
-652. Cinderella (2015)
-653. Spiderhead
-654. A Nightmare on Elm Street (2010)
-655. Blair Witch Project
-656. Paranormal Activity
-657. Paranormal Activity 2
-658. Paranormal Activity 3
-659. Paranormal Activity 4
-660. Carrie (2013)
-661. Tremors
-662. I Know What you did Last Summer
-663. Aliens in the Attic
-664. Max
-665. Bambi
-666. James and the Giant Peach
-667. Diary of a Wimpy Kid
-668. Diary of a Wimpy Kid Rodrick Rules
-669. The King and I
-670. The Sound of Music
-671. My Fair Lady
-672. Annie
-673. Annie (2014)
-674. Phineas and Ferb the Movie
-675. A Goofy Movie
-676. An Extremely Goofy Movie
-677. Tom and Jerry the Nutcracker Tale
-678. Just 4 Kicks
-679. Mary Poppins
-680. 20,000 Leagues Under the Sea
-681. Muppets Treasure Island
-682. Air Bud
-683. Alvin and the Chipmunks
-684. Alvin and the Chipmunks the Squeakwel
-685. Alvin and the Chipmunks Chipwrecked
-686. Ferris Bueller's Day Off
-687. Tag
-688. Bolt
-689. Cheaper by the Dozen
-690. Narnia: The Lion the Witch and the Wardrobe
-691. Diary of a Wimpy Kid Dog Days
-692. Dumbo
-693. Free Birds
-694. Valiant
-695. G-Force
-696. Guliver's Travels
-697. Tenacious D and the Pick of Destiny
-698. Hidden Figures
-699. Invisible Sister
-700. Logan
-701. Nanny McPhee
-702. Mr Popper's Penguins
-703. Newsies
-704. The Princess Diaries
-705. Princess Protection Program
-706. Race to Witch Mountain
-707. Remember the Titans
-708. Rudy
-709. Rio
-710. Rio 2
-711. The Sandlot
-712. Home
-713. West Side Story
-714. The Three Musketeers
-715. Tom and Jerry Meet Sherlock Holmes
-716. Rango
-717. Men in Black
-718. Pixels
-719. Shark Tale
-720. Super Fast
-721. Turbo
-722. The Accountant
-723. Nacho Libre
-724. Big
-725. Robocop (2014)
-726. Facing the Giants
-727. Little Giants
-728. Passion of the Christ
-729. Alpha and Omega
-730. Hop
-731. Unfriended
-732. Gods of Egypt
-733. Inception
-734. Forrest Gump
-735. Ace Ventura: Pet Detective
-736. Larry the Cable Guy
-737. The Truman Show
-738. The Sixth Sense
-739. Titanic
-740. Ready Player One
-741. Gone in 60 Seconds
-742. The Green Mile
-743. Due Date
-744. Night at the Museum
-745. Night at the Museum: Battle of the Smithsonean
-746. Night at the Museum: Secret of the Tomb
-747. Life is Beautiful
-748. Schindler's List
-749. Penguins of Madagascar
-750. Fast Times at Ridgemont High
-751. Pulp Fiction
-752. A Beautiful Mind
-753. The Suicide Squad
-754. The Dictator
-755. Superbad
-756. Scott Pilgrim Vs The World
-757. Shazam
-758. Oppenheimer
-759. Hot Tub Time Machine
-760. Beauty and the Beast (Live Action)
-761. Nope
-762. The Hunger Games: Ballad of Songbirds and Snakes
-763. Leave the World Behind
-764. This is the End
-765. Cocaine Bear
-766. Zoolander
-767. The Devil Wears Prada
-768. The Intern
-769. Guns Akimbo
-770. Distinguished Gentlemen
-771. Sex Tape
-772. Thanksgiving
-773. Goblin Slayer - Goblin’s Crown
-774. The Ballad of Buster Scruggs
-775. Happiness for Beginners
-776. No Country for Old Men
-777. Tropic Thunder
-778. First Blood
-779. Catch Me if you Can
-780. Sonic the Hedgehog
-781. Hot Tub Time Machine 2
-782. Shutter Island
-783. Scouts Guide to the Zombie Apocalypse
-784. Disquiet
-785. Team America World Police
-786. The Forever Purge
-787. Lord of War
-788. Disaster Movie
-789. The Mist
-790. The Torture Report
-791. Waiting
-792. The Interview
-793. National Security
-794. War Dogs
-795. Pineapple Express
-796. A Million Ways to Die in the West
-797. Old Dads
-798. Hacksaw Ridge
-799. Yesterday
-800. Inside Man
-801. The Matrix Reloaded
-802. The Matrix Revolutions
-803. Fun with Dick and Jane
-804. Tower Heist
-805. Liar Liar
-806. Me Time
-807. The Adam Project
-808. Anyone but You
-809. Deadpool and Wolverine
-810. Metal Lords
-811. Luca
-812. The Ridiculous Six
-813. Logan Lucky
-814. Red Dragon
-815. The Butterfly Effect
-816. The Longest Yard
-817. Terrifier
-818. Joker Folie a Deu
-819. Beetlejuice
-820. Carry-On
-821. The Dead Don’t Die
-822. Whiplash
-823. 22 Jump Street
-824. Subservience
-825. It Ends with Us
-826. Hit Man
-827. Bad Words
-828. The 47 Ronin - Part 1
-829. The 47 Ronin - Part 2
-830. Harakiri
-831. Rush Hour
-832. Gonza the Spearman
-833. Wild Geese
-834. Rush Hour 2
-835. Twenty Four Eyes
-836. Rush Hour 3
-837. No Hard Feelings
-838. The Autopsy of Jane Doe
-839. The Package
-840. Oblivion
-841. The Silencing
-842. The Guilty
-843. The Lost City
-844. The Human Condition - Part 1
-845. The Human Condition - Part 2
-846. Notting Hill
-847. Interstellar
-848. Unhinged
-849. Knives Out
-850. Don’t Look Up
-851. Pigs and Warships
-852. Father Figures
-853. Godzilla 1954
-854. Godzilla: King of Monsters
-855. It’s What’s Inside
-856. Awakenings
-857. The Squid and the Whale
-858. I Don’t Feel at Home in this World Anymore
-859. The Killer
-860. Stand by Me
-861. The Abyss
-862. Molly’s Game
-863. Patriot’s Day
-864. Upgrade
-865. Parasite
-866. Ouija
-867. On the Line
-868. 1917
-869. Ouija Origin of Evil
-870. Scream V
-871. Baby Driver
-872. Scream VI
-873. The King
-874. The Tutor
-875. Unbroken
-876. The Platform
-877. The Platform 2
-878. The Menu
-879. 1922
-880. Circle
-881. Birdbox Barcelona
-882. Extraction 2
-883. In the Tall Grass
-884. The Net
-885. The Call
-886. The Founder
-887. Army of the Dead
-888. To Catch a Killer
-889. A Sacrifice
-890. Back in Action
-891. Deep
-892. Creep
-893. A Haunted House
-894. 21 Bridges
-895. Legend
-896. Watcher
-897. Demon City
-898. Venom: The Last Dance
-899. Last Seen Alive
-900. Afraid
-901. Code 8
-902. Aftermath
-903. The Silence
-904. The Devil All the Time
-905. Rust Creek
-906. Your Lucky Day
-907. Viral
-908. Don’t Move
-909. The Cloverfield Paradox
-910. Trap
-911. Smile 2
-912. Fractured
-913. Time Cut
-914. Little Man
-915. Mr Harrigan’s Phone
-916. No Escape
-917. Hustle
-918. How to Train your Dragon 2025
-919. Maltese Falcon
-920. Red Eye
-921. Focus
-922. Train to Busan
-923. Superman 2025
-924. Talk to Me
-925. Sweet Bobby My Catfishing Nightmare
-926. Sinister
-927. Fantastic Four First Steps
-928. Midnight in the Switchgrass
-929. Van Helsing
-930. Terrifier 2
-931. Terrifier 3
-932. Escape Room
-933. The Wild Robot
-934. Demon Slayer Infinity Castle Part 1
-935. Slender Man
-936. Weapons
-937. Creep 2
-938. American Murder the Family next Door
-939. Eurotrip
-940. A Man Called Otto
-941. Bull Durham
-942. With Honors
-943. Fear Street Prom Night
-944. Heart Eyes
-945. After
-946. I Know What You Did Last Summer (2025)
-947. Fatal Attraction
-948. Project Hail Mary
-949. Perks of Being a Wallflower
-950. Host
-951. After We Collided
-952. After We Fell
-953. Until Dawn
-954. 12 Angry Men
-955. Anaconda (2025)
-956. The Naked Gun (2025)
-957. Countdown
-958. 10 x 10
-959. Brick
-960. Hypnotic
-961. Scream 7
-962. War Machine
-963. Just Go With It
-964. 30 Minutes or Less
-965. Dirty Grandpa
-966. Of Mice and Men
-967. Alone
-968. Don’t Listen
-969. 10 Things I Hate About You
-970. Waves
-971. Dredd
-972. Blazing Saddles
-973. Battle Royale
-974. The Fifth Element
-975. The Year I Started Masturbating
-976. How do you Know
-977. Gerald’s Game
-978. Along Came Polly
-979. Mudborn
-980. License to Wed
-981. Cosmic Princess Kaguya
-982. Casino
-983. Gaslit by my Husband
-984. Rain Man
-985. Blended
-986. Deadstream
-987. Zombieland 2: Double Tap
-988. Saw X
-989. Obsession
-990. Spider-Man Brand New Day
-991. Karen
-992. The Housemaid
-993. Avengers: Doomsday
+390. The Lord of the Rings: The Fellowship of the Ring (2001)
+391. The Lord of the Rings: The Two Towers (2002)
+392. The Lord of the Rings: The Return of the King (2003)
+393. Jurassic Park
+394. Jurassic World
+395. Jurassic World 2
+396. Jurassic World 3
+397. The Karate Kid
+398. The Karate Kid 2
+399. The Karate Kid 3
+400. The Karate Kid (2014)
+401. A Whisker Away
+402. Your Name
+403. A Silent Voice
+404. Grease
+405. Glass
+406. The Lego Ninjago Movie
+407. The Lorax
+408. Romeo And Juliet
+409. Gnomeo and Juliet
+410. Despicable Me
+411. Despicable Me 2
+412. Despicable Me 3
+413. Pokemon the First Movie
+414. Pokemon the Movie 2000
+415. Pokemon 3: The Movie
+416. Pokemon 4-Ever
+417. Pokemon Heroes
+418. Pokemon the Movie: Kyurem vs the Sword of Justice
+419. The Blindside
+420. Drumline
+421. Benchwarmers
+422. Joe Dirt
+423. Uncle Buck
+424. Tommy Boy
+425. Surf's Up
+426. Happy Feet
+427. Happy Feet 2
+428. Silence of the Lambs
+429. The Bourne Identity
+430. The Bourne Supremacy
+431. The Bourne Ultimatum
+432. The Hangover
+433. The Hangover 2
+434. The Hangover 3
+435. The Starving Games
+436. Taken
+437. American Pie
+438. American Pie 2
+439. American Psycho
+440. Trolls
+441. Zombies
+442. Zombies 2
+443. Zombies 3
+444. Descendants
+445. Descendants 2
+446. High School Musical
+447. High School Musical 2
+448. High School Musical 3
+449. Sharpay's Fabulous Adventure
+450. Camp Rock
+451. Radio Rebel
+452. How to Build a Better Boy
+453. Zapped
+454. Sky High
+455. Teen Beach Movie
+456. Mrs Doubtfire
+457. Honey I Shrunk the Kids
+458. Flubber
+459. Nutty Professor
+460. Bad Hair Day
+461. Pitch Perfect
+462. Pitch Perfect 2
+463. Cloud 9
+464. Freaky Friday
+465. Thunderstruck
+466. Are We There Yet
+467. Are We Done Yet
+468. Sixteen Candles
+469. Year One
+470. Fifty Shades of Gray
+471. Twilight
+472. The Twilight Saga: New Moon
+473. The Twilight Saga: Eclipse
+474. Naked
+475. Flushed Away
+476. Minions
+477. Chicken Run
+478. Chicken Little
+479. Matilda
+480. Bee Movie
+481. Sing
+482. Secret Life of Pets
+483. Cloudy With a Chance of Meatballs
+484. Cloudy With a Chance of Meatballs 2
+485. Boss Baby
+486. Astro Boy
+487. Little Rascals
+488. Little Rascals Save the Day
+489. Jennifer's Body
+490. The Happytime Murders
+491. Ghostbusters
+492. Ghostbusters (2016)
+493. It Follows
+494. Smile
+495. The Black Phone
+496. Death Note
+497. Children of the Corn
+498. Fear Street Part One 1994
+499. Fear Street Part Two 1978
+500. Fear Street Part Three 1666
+501. Pet
+502. The Conjuring
+503. The Conjuring 2
+504. The Purge
+505. The Purge 2
+506. The Purge Election Year
+507. Halloweentown
+508. The Boy
+509. The Night of the Living Dead
+510. I am Mother
+511. Ex Machina
+512. Hellraiser
+513. The Exorcist
+514. Back to the Future
+515. Back to the Future 2
+516. Back to the Future 3
+517. Indiana Jones and the Temple of Doom
+518. Indiana Jones and the Crystal Skull
+519. Indiana Jones: The Last Crusade
+520. Face Off
+521. National Treasure
+522. The Sorcerer's Apprentice
+523. Jaws
+524. Jaws 2
+525. The Meg
+526. Sweet Girl
+527. Lethal Weapon
+528. Legally Blonde
+529. True Memoirs of an International Assassin
+530. Uncharted
+531. Wonder Woman
+532. Wonder Woman 1984
+533. Good Will Hunting
+534. E.T.
+535. The Goonies
+536. M3GAN (2022)
+537. Fight Club
+538. Roadhouse
+539. Brain on Fire
+540. 5 Feet Apart
+541. A Land Before Time
+542. Why Him
+543. Meet the Parents
+544. Elvis
+545. Sister Act
+546. The Great Outdoors
+547. The Wizard of Oz
+548. Oz the Great and Powerful
+549. The Hunt for Red October
+550. The Commitments
+551. Tron: Legacy
+552. Stripes
+553. Get Smart
+554. Who Framed Rodger Rabbit
+555. Space Jam
+556. Heavyweights
+557. Joy
+558. Passengers
+559. The Martian
+560. Demon Slayer: Mugen Train
+561. Expelled from Paradise
+562. Parental Guidance
+563. The Dark Crystal
+564. Labyrinth
+565. The Water Horse
+566. The Never Ending Story
+567. Maleficent
+568. Borat: Cultural Learnings of America to Make Benefit Glorious Nation of Kazakhstan
+569. Borat: Subsequent Moviefilm
+570. Coming to America
+571. Shrek
+572. Shrek 2
+573. Shrek the Third
+574. Puss in Boots
+575. Puss in Boots: The Last Wish
+576. Daddy Day Care
+577. Mr Mom
+578. Dr Dolittle
+579. Open Season
+580. Over the Hedge
+581. Paper Towns
+582. The Fault in our Stars
+583. Predator
+584. Alien
+585. Alien 2
+586. Ramona and Beezus
+587. Because of Winn Dixie
+588. Robin Hood: Men in Tights
+589. Robin Hood: Prince of Thieves
+590. 300
+591. The Ring
+592. The Ring 2
+593. The Duff
+594. Adventures in Babysitting (2016)
+595. Jingle All the Way
+596. Kindergarden Cop
+597. Stuart Little
+598. Coraline
+599. Monster House
+600. Old
+601. Dungeons and Dragons: Honor Among Thieves
+602. The Machine
+603. Anabelle
+604. The Bye Bye Man
+605. The Smurfs
+606. The Smurfs 2
+607. Bruce Almighty
+608. Johnny English
+609. Johnny English Reborn
+610. Rat Race
+611. Mr Bean
+612. Mr Bean the Ultimate Disaster Movie
+613. The Ant Bully
+614. The Nut Job
+615. The 40 Year Old Virgin
+616. Horton Hears a Who
+617. Dinner for Schmucks
+618. Fantastic Beasts and Where to Find Them
+619. The Nun
+620. The Maze Runner
+621. Maze Runner: The Scorch Trials
+622. The Mask
+623. Batman (1989)
+624. Batman Returns
+625. Batman Forever
+626. Batman and Robin
+627. American Sniper
+628. Mr Peabody and Sherman
+629. Mortal Kombat (2021)
+630. Mortal Kombat
+631. Mortal Kombat Conquest
+632. Howard the Duck
+633. The Matrix
+634. Bill and Ted's Excellent Adventure
+635. Spaceballs
+636. A League of Their Own
+637. Divergent
+638. Avatar
+639. Lucy
+640. Poltergeist
+641. Robots
+642. Meet the Robinsons
+643. Edward Scissorhands
+644. Corpse Bride
+645. Monsters Versus Aliens
+646. War Games
+647. The Iron Giant
+648. Teen Wolf
+649. Kill Bill
+650. Holes
+651. Office Space
+652. A Christmas Story
+653. A Cinderella Story
+654. Cinderella (2015)
+655. Spiderhead
+656. A Nightmare on Elm Street (2010)
+657. Blair Witch Project
+658. Paranormal Activity
+659. Paranormal Activity 2
+660. Paranormal Activity 3
+661. Paranormal Activity 4
+662. Carrie (2013)
+663. Tremors
+664. I Know What you did Last Summer
+665. Aliens in the Attic
+666. Max
+667. Bambi
+668. James and the Giant Peach
+669. Diary of a Wimpy Kid
+670. Diary of a Wimpy Kid Rodrick Rules
+671. The King and I
+672. The Sound of Music
+673. My Fair Lady
+674. Annie
+675. Annie (2014)
+676. Phineas and Ferb the Movie
+677. A Goofy Movie
+678. An Extremely Goofy Movie
+679. Tom and Jerry the Nutcracker Tale
+680. Just 4 Kicks
+681. Mary Poppins
+682. 20,000 Leagues Under the Sea
+683. Muppets Treasure Island
+684. Air Bud
+685. Alvin and the Chipmunks
+686. Alvin and the Chipmunks the Squeakwel
+687. Alvin and the Chipmunks Chipwrecked
+688. Ferris Bueller's Day Off
+689. Tag
+690. Bolt
+691. Cheaper by the Dozen
+692. Narnia: The Lion the Witch and the Wardrobe
+693. Diary of a Wimpy Kid Dog Days
+694. Dumbo
+695. Free Birds
+696. Valiant
+697. G-Force
+698. Guliver's Travels
+699. Tenacious D and the Pick of Destiny
+700. Hidden Figures
+701. Invisible Sister
+702. Logan
+703. Nanny McPhee
+704. Mr Popper's Penguins
+705. Newsies
+706. The Princess Diaries
+707. Princess Protection Program
+708. Race to Witch Mountain
+709. Remember the Titans
+710. Rudy
+711. Rio
+712. Rio 2
+713. The Sandlot
+714. Home
+715. West Side Story
+716. The Three Musketeers
+717. Tom and Jerry Meet Sherlock Holmes
+718. Rango
+719. Men in Black
+720. Pixels
+721. Shark Tale
+722. Super Fast
+723. Turbo
+724. The Accountant
+725. Nacho Libre
+726. Big
+727. Robocop (2014)
+728. Facing the Giants
+729. Little Giants
+730. Passion of the Christ
+731. Alpha and Omega
+732. Hop
+733. Unfriended
+734. Gods of Egypt
+735. Inception
+736. Forrest Gump
+737. Ace Ventura: Pet Detective
+738. Larry the Cable Guy
+739. The Truman Show
+740. The Sixth Sense
+741. Titanic
+742. Ready Player One
+743. Gone in 60 Seconds
+744. The Green Mile
+745. Due Date
+746. Night at the Museum
+747. Night at the Museum: Battle of the Smithsonean
+748. Night at the Museum: Secret of the Tomb
+749. Life is Beautiful
+750. Schindler's List
+751. Penguins of Madagascar
+752. Fast Times at Ridgemont High
+753. Pulp Fiction
+754. A Beautiful Mind
+755. The Suicide Squad
+756. The Dictator
+757. Superbad
+758. Scott Pilgrim Vs The World
+759. Shazam
+760. Oppenheimer
+761. Hot Tub Time Machine
+762. Beauty and the Beast (Live Action)
+763. Nope
+764. The Hunger Games: Ballad of Songbirds and Snakes
+765. Leave the World Behind
+766. This is the End
+767. Cocaine Bear
+768. Zoolander
+769. The Devil Wears Prada
+770. The Intern
+771. Guns Akimbo
+772. Distinguished Gentlemen
+773. Sex Tape
+774. Thanksgiving
+775. Goblin Slayer - Goblin’s Crown
+776. The Ballad of Buster Scruggs
+777. Happiness for Beginners
+778. No Country for Old Men
+779. Tropic Thunder
+780. First Blood
+781. Catch Me if you Can
+782. Sonic the Hedgehog
+783. Hot Tub Time Machine 2
+784. Shutter Island
+785. Scouts Guide to the Zombie Apocalypse
+786. Disquiet
+787. Team America World Police
+788. The Forever Purge
+789. Lord of War
+790. Disaster Movie
+791. The Mist
+792. The Torture Report
+793. Waiting
+794. The Interview
+795. National Security
+796. War Dogs
+797. Pineapple Express
+798. A Million Ways to Die in the West
+799. Old Dads
+800. Hacksaw Ridge
+801. Yesterday
+802. Inside Man
+803. The Matrix Reloaded
+804. The Matrix Revolutions
+805. Fun with Dick and Jane
+806. Tower Heist
+807. Liar Liar
+808. Me Time
+809. The Adam Project
+810. Anyone but You
+811. Deadpool and Wolverine
+812. Metal Lords
+813. Luca
+814. The Ridiculous Six
+815. Logan Lucky
+816. Red Dragon
+817. The Butterfly Effect
+818. The Longest Yard
+819. Terrifier
+820. Joker Folie a Deu
+821. Beetlejuice
+822. Carry-On
+823. The Dead Don’t Die
+824. Whiplash
+825. 22 Jump Street
+826. Subservience
+827. It Ends with Us
+828. Hit Man
+829. Bad Words
+830. The 47 Ronin - Part 1
+831. The 47 Ronin - Part 2
+832. Harakiri
+833. Rush Hour
+834. Gonza the Spearman
+835. Wild Geese
+836. Rush Hour 2
+837. Twenty Four Eyes
+838. Rush Hour 3
+839. No Hard Feelings
+840. The Autopsy of Jane Doe
+841. The Package
+842. Oblivion
+843. The Silencing
+844. The Guilty
+845. The Lost City
+846. The Human Condition - Part 1
+847. The Human Condition - Part 2
+848. Notting Hill
+849. Interstellar
+850. Unhinged
+851. Knives Out
+852. Don’t Look Up
+853. Pigs and Warships
+854. Father Figures
+855. Godzilla 1954
+856. Godzilla, King of the Monsters! (1956)
+857. It’s What’s Inside
+858. Awakenings
+859. The Squid and the Whale
+860. I Don’t Feel at Home in this World Anymore
+861. The Killer
+862. Stand by Me
+863. The Abyss
+864. Molly’s Game
+865. Patriot’s Day
+866. Upgrade
+867. Parasite
+868. Ouija
+869. On the Line
+870. 1917
+871. Ouija Origin of Evil
+872. Scream V
+873. Baby Driver
+874. Scream VI
+875. The King
+876. The Tutor
+877. Unbroken
+878. The Platform
+879. The Platform 2
+880. The Menu
+881. 1922
+882. Circle
+883. Birdbox Barcelona
+884. Extraction 2
+885. In the Tall Grass
+886. The Net
+887. The Call
+888. The Founder
+889. Army of the Dead
+890. To Catch a Killer
+891. A Sacrifice
+892. Back in Action
+893. Deep (2021)
+894. Creep
+895. A Haunted House
+896. 21 Bridges
+897. Legend
+898. Watcher
+899. Demon City
+900. Venom: The Last Dance
+901. Last Seen Alive
+902. Afraid
+903. Code 8
+904. Aftermath
+905. The Silence
+906. The Devil All the Time
+907. Rust Creek
+908. Your Lucky Day
+909. Viral
+910. Don’t Move
+911. The Cloverfield Paradox
+912. Trap
+913. Smile 2
+914. Fractured
+915. Time Cut
+916. Little Man
+917. Mr Harrigan’s Phone
+918. No Escape
+919. Hustle
+920. How to Train your Dragon 2025
+921. Maltese Falcon
+922. Red Eye
+923. Focus
+924. Train to Busan
+925. Superman 2025
+926. Talk to Me
+927. Sweet Bobby My Catfishing Nightmare
+928. Sinister
+929. Fantastic Four First Steps
+930. Midnight in the Switchgrass
+931. Van Helsing
+932. Terrifier 2
+933. Terrifier 3
+934. Escape Room
+935. The Wild Robot
+936. Demon Slayer Infinity Castle Part 1
+937. Slender Man
+938. Weapons
+939. Creep 2
+940. American Murder the Family next Door
+941. Eurotrip
+942. A Man Called Otto
+943. Bull Durham
+944. With Honors
+945. Fear Street Prom Night
+946. Heart Eyes
+947. After
+948. I Know What You Did Last Summer (2025)
+949. Fatal Attraction
+950. Project Hail Mary
+951. Perks of Being a Wallflower
+952. Host
+953. After We Collided
+954. After We Fell
+955. Until Dawn
+956. 12 Angry Men
+957. Anaconda (2025)
+958. The Naked Gun (2025)
+959. Countdown
+960. 10 x 10
+961. Brick (2025)
+962. Hypnotic
+963. Scream 7
+964. War Machine
+965. Just Go With It
+966. 30 Minutes or Less
+967. Dirty Grandpa
+968. Of Mice and Men (1939)
+969. Alone
+970. Don’t Listen
+971. 10 Things I Hate About You
+972. Waves
+973. Dredd
+974. Blazing Saddles
+975. Battle Royale
+976. The Fifth Element
+977. The Year I Started Masturbating
+978. How do you Know
+979. Gerald’s Game
+980. Along Came Polly
+981. Mudborn
+982. License to Wed
+983. Cosmic Princess Kaguya
+984. Casino
+985. Gaslit by my Husband
+986. Rain Man
+987. Blended
+988. Deadstream
+989. Zombieland 2: Double Tap
+990. Saw X
+991. Obsession
+992. Spider-Man Brand New Day
+993. Karen
+994. The Housemaid
+995. Avengers: Doomsday
 
 # Dropped on purpose, so they have no number here. To bring one back, add it as a numbered line
 # wherever you want it in the order (the lines after it move down by one when you renumber).

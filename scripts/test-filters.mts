@@ -358,8 +358,12 @@ check('Totals, and unreleased movies are left out of year-based numbers', () => 
 });
 
 check('Oldest, newest and average release year', () => {
-  assert.equal(stats.oldest!.number, numberOf('The Wizard of Oz'));
-  assert.equal(stats.newest!.number, numberOf('Spider-Man: Brand New Day'));
+  // Worked out straight from the raw data, so it stays right as the list changes.
+  const dated = raw
+    .filter((m) => m.status !== 'unreleased' && m.releaseDate)
+    .sort((a, b) => (a.releaseDate! < b.releaseDate! ? -1 : a.releaseDate! > b.releaseDate! ? 1 : a.number - b.number));
+  assert.equal(stats.oldest!.number, dated[0].number);
+  assert.equal(stats.newest!.number, dated.at(-1)!.number);
   const years = raw.filter((m) => m.status !== 'unreleased' && m.year !== null).map((m) => m.year!);
   assert.equal(stats.averageYear, years.reduce((a, b) => a + b, 0) / years.length);
   assert.notEqual(stats.newest!.number, DOOMSDAY);

@@ -40,7 +40,7 @@ Your list lives in `data/movies.txt`. One movie per line: a number, the title, a
 ```
 
 - `1. Title`, `1 Title` and `1) Title` all work. Extra spaces and blank lines are ignored.
-- **Your numbers are yours.** They are the ranking, and none of the scripts ever change or renumber them on their own. Right now they run from 1 to 993 with no gaps, and *Avengers: Doomsday* is the last line.
+- **Your numbers are yours.** They are the ranking, and none of the scripts ever change or renumber them on their own. They run from 1 to your last movie with no gaps (`npm run check-list` tells you the total), and *Avengers: Doomsday* is the last line.
 - A line that starts with `#` is a comment and is ignored. This is also how you drop a movie without losing its number: put a `#` in front of it.
 - **Add the year whenever you can.** Titles like "Halloween" or "Carrie" belong to several movies, and the year picks the right one. Without it, the lookup may flag the movie for your review.
 - The saved data, `data/overrides.json` and the fix files all refer to movies by these numbers. To insert a movie in the middle, use `npm run add` (see below), which renumbers everything together. Do not renumber by editing the files by hand.
@@ -94,7 +94,7 @@ npm run lookup 12 40        # looks up just those list numbers again
 - It remembers earlier results, so running it again only fetches what is new or changed. Changing the title or year on a line makes that one movie get looked up again.
 - It pauses a moment between requests to be polite to TMDB. Expect about 2 requests per movie, and roughly 15 minutes for a thousand.
 - It saves as it goes. If it stops partway, run it again and it picks up where it left off.
-- **Avengers: Doomsday and other unreleased movies** stay in their spot with a "Coming soon" tag. When more details appear on TMDB, run `npm run lookup 993` (its number in the list) to fill them in.
+- **Avengers: Doomsday and other unreleased movies** stay in their spot with a "Coming soon" tag. When more details appear on TMDB, run `npm run lookup <its number>` (look it up in the list; it is the last line) to fill them in.
 
 ### The review report
 
