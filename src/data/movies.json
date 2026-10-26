@@ -3870,49 +3870,47 @@
   },
   {
     "number": 103,
-    "myTitle": "The Grinch",
+    "myTitle": "How the Grinch Stole Christmas!",
     "input": {
-      "title": "The Grinch",
-      "year": null,
+      "title": "How the Grinch Stole Christmas!",
+      "year": 1966,
       "override": null
     },
-    "tmdbId": 360920,
-    "officialTitle": "The Grinch",
-    "releaseDate": "2018-11-08",
-    "year": 2018,
-    "decade": "2010s",
+    "tmdbId": 13377,
+    "officialTitle": "How the Grinch Stole Christmas!",
+    "releaseDate": "1966-12-18",
+    "year": 1966,
+    "decade": "1960s",
     "genres": [
       "Animation",
-      "Comedy",
       "Family",
-      "Fantasy"
+      "Comedy"
     ],
-    "overview": "The Grinch hatches a scheme to ruin Christmas when the residents of Whoville plan their annual holiday celebration. But a certain little who might change things.",
-    "posterPath": "/Al7DMUp8bqUN4JwXVNxfJYyv5cH.jpg",
+    "overview": "Bitter and hateful, the Grinch is irritated at the thought of a nearby village having a happy time celebrating Christmas. Disguised as Santa Claus, with his dog made to look like a reindeer, he decides to raid the village to steal all the Christmas things.",
+    "posterPath": "/7ir0iRuPK9OEuH569cp0nF5CJce.jpg",
     "stars": [
-      "Benedict Cumberbatch",
-      "Rashida Jones",
-      "Kenan Thompson",
-      "Cameron Seely",
-      "Angela Lansbury"
+      "Boris Karloff",
+      "June Foray",
+      "Dal McKennon",
+      "Thurl Ravenscroft"
     ],
     "directors": [
-      "Yarrow Cheney",
-      "Scott Mosier"
+      "Chuck Jones"
     ],
     "studios": [
-      "Illumination",
-      "Universal Pictures"
+      "The Cat in the Hat Productions",
+      "MGM Animation/Visual Arts",
+      "MGM Television"
     ],
     "status": "matched",
-    "fetchedAt": "2026-10-25"
+    "fetchedAt": "2026-10-26"
   },
   {
     "number": 104,
     "myTitle": "How the Grinch Stole Christmas",
     "input": {
       "title": "How the Grinch Stole Christmas",
-      "year": null,
+      "year": 2000,
       "override": null
     },
     "tmdbId": 8871,
@@ -3943,7 +3941,7 @@
       "LUNI Productions"
     ],
     "status": "matched",
-    "fetchedAt": "2026-10-25"
+    "fetchedAt": "2026-10-26"
   },
   {
     "number": 105,
