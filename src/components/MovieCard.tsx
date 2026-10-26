@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { GridMovie } from '../lib/movies';
 import { POSTER_SIZES, posterSrc, posterSrcSet } from '../lib/poster';
 import PosterPlaceholder from './PosterPlaceholder';
+import GradeBadge from './GradeBadge';
 
 interface Props {
   movie: GridMovie;
@@ -29,7 +30,7 @@ export default function MovieCard({ movie, eager, priority, onOpen }: Props) {
         type="button"
         onClick={() => onOpen(movie.number)}
         aria-haspopup="dialog"
-        aria-label={`${label}, list number ${movie.number}. Open details`}
+        aria-label={`${label}, list number ${movie.number}${movie.rating ? `, graded ${movie.rating}` : ''}. Open details`}
         className="group block w-full rounded-xl text-left"
       >
         <div className="relative aspect-[2/3] overflow-hidden rounded-xl border border-line bg-panel-2 shadow-lg shadow-black/40 transition-colors group-hover:border-gold">
@@ -55,6 +56,12 @@ export default function MovieCard({ movie, eager, priority, onOpen }: Props) {
           <span className="absolute left-2 top-2 rounded-full bg-gold px-2.5 py-1 text-sm font-bold leading-none text-[#1a1204] shadow-md shadow-black/50">
             <span aria-hidden="true">{movie.number}</span>
           </span>
+
+          {movie.rating && (
+            <span className="absolute right-2 top-2">
+              <GradeBadge grade={movie.rating} />
+            </span>
+          )}
 
           {movie.comingSoon && (
             <span className="absolute inset-x-2 bottom-2 rounded-md bg-ink/85 px-2 py-1 text-center text-xs font-semibold uppercase tracking-wider text-gold">

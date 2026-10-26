@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import BarChart from '../components/BarChart.astro';
 import { loadGridMovies } from '../lib/load';
-import { computeStats, movieLink } from '../lib/stats';
+import { computeStats, filterLink, movieLink } from '../lib/stats';
 
 const stats = computeStats(loadGridMovies());
 const tieNote = 'Ties are listed A to Z.';
@@ -65,7 +65,97 @@ const tieNote = 'Ties are listed A to Z.';
     }
   </dl>
 
-  <div class="mt-6">
+  {
+    stats.graded > 0 && (
+      <>
+        <h2 class="mt-10 font-display text-2xl font-bold">My grades</h2>
+        <p class="mt-1 max-w-prose text-muted">
+          Every movie gets a grade from S down to F, with a plus or a minus on each. S+ is the best and F- is the worst.
+        </p>
+
+        <dl class="mt-4 grid gap-4 sm:grid-cols-3">
+          <div class="rounded-2xl border border-line bg-panel p-5">
+            <dt class="text-sm text-muted">Movies graded</dt>
+            <dd class="mt-1 font-display text-4xl font-bold text-gold">{stats.graded}</dd>
+            <dd class="mt-1 text-sm text-muted">out of {stats.total}</dd>
+          </div>
+          {
+            stats.averageGrade && (
+              <div class="rounded-2xl border border-line bg-panel p-5">
+                <dt class="text-sm text-muted">Average grade</dt>
+                <dd class="mt-1 font-display text-4xl font-bold text-gold">{stats.averageGrade.grade}</dd>
+                <dd class="mt-1 text-sm text-muted">{stats.averageGrade.score.toFixed(1)} out of 21</dd>
+              </div>
+            )
+          }
+          {
+            stats.commonGrade && (
+              <div class="rounded-2xl border border-line bg-panel p-5">
+                <dt class="text-sm text-muted">Most common grade</dt>
+                <dd class="mt-1 font-display text-4xl font-bold text-gold">{stats.commonGrade.grade}</dd>
+                <dd class="mt-1 text-sm text-muted">{stats.commonGrade.count} movies</dd>
+              </div>
+            )
+          }
+        </dl>
+
+        <div class="mt-6">
+          <BarChart
+            title="How the grades are spread"
+            rows={stats.grades}
+            unit="movies"
+            note="Best grade first. Click a bar to see those movies."
+          />
+        </div>
+
+        <div class="mt-6 grid gap-6 lg:grid-cols-2">
+          {[
+            { heading: 'Highest rated', set: stats.best },
+            { heading: 'Lowest rated', set: stats.worst },
+          ].map(
+            ({ heading, set }) =>
+              set && (
+                <section class="rounded-2xl border border-line bg-panel p-5">
+                  <h2 class="font-display text-xl font-bold">
+                    {heading}: {set.grade}
+                  </h2>
+                  <p class="mt-1 text-sm text-muted">
+                    {set.movies.length} {set.movies.length === 1 ? 'movie' : 'movies'}, in list order.
+                  </p>
+                  <ul class="mt-3 space-y-1">
+                    {set.movies.slice(0, 12).map((m) => (
+                      <li>
+                        <a
+                          href={movieLink(m.number)}
+                          class="inline-block py-1 text-text underline-offset-4 hover:text-gold hover:underline"
+                        >
+                          <span class="text-muted">#{m.number}</span> {m.title}
+                          {m.year ? ` (${m.year})` : ''}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                  {set.movies.length > 12 && (
+                    <a
+                      href={filterLink('grade', set.grade)}
+                      class="mt-3 inline-block py-1 text-sm font-medium text-gold underline underline-offset-4"
+                    >
+                      See all {set.movies.length}
+                    </a>
+                  )}
+                </section>
+              ),
+          )}
+        </div>
+      </>
+    )
+  }
+
+  <div class="mt-10">
+    <h2 class="font-display text-2xl font-bold">The whole list</h2>
+  </div>
+
+  <div class="mt-4">
     <BarChart
       title="Movies per decade"
       rows={stats.byDecade}

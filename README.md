@@ -12,11 +12,12 @@ Built with Astro and React, hosted on Vercel. All movie details come from [TMDB]
 4. [Fixing a wrong match](#fixing-a-wrong-match)
 5. [Refreshing the data (every few months)](#refreshing-the-data-every-few-months)
 6. [Studio name merges](#studio-name-merges)
-7. [Checking your work](#checking-your-work)
-8. [Putting it on the web (GitHub and Vercel)](#putting-it-on-the-web-github-and-vercel)
-9. [Updating the live site later](#updating-the-live-site-later)
-10. [How it is organized](#how-it-is-organized)
-11. [TMDB rules to remember](#tmdb-rules-to-remember)
+7. [Rating your movies (local only)](#rating-your-movies-local-only)
+8. [Checking your work](#checking-your-work)
+9. [Putting it on the web (GitHub and Vercel)](#putting-it-on-the-web-github-and-vercel)
+10. [Updating the live site later](#updating-the-live-site-later)
+11. [How it is organized](#how-it-is-organized)
+12. [TMDB rules to remember](#tmdb-rules-to-remember)
 
 ## Quick start
 
@@ -162,11 +163,44 @@ Companies show up under many names ("Warner Bros. Pictures", "Warner Bros. Anima
 
 To merge two more names, add a line of `"Variant name": "Display name"` and rebuild. Look at the Studio filter or the Stats page to find names that should be merged. Nothing is ever merged without you adding it here.
 
+## Rating your movies (local only)
+
+Grade every movie from S to F, with a plus or minus on each (S+, S, S-, A+, A, A-, B+, B, B-, and so on down to F-). That is 21 grades, best first.
+
+```bash
+npm run dev
+```
+
+Then open **http://localhost:4321/rate**. You get one movie at a time with its poster, a short description, and a grid of all 21 grades.
+
+- **Click a grade**, or **type a letter then `+`, `-` or Enter** (for example `b` then `+` is B+, and `s` then Enter is a plain S). It saves and moves to the next movie.
+- **Unrated** shows only movies without a grade, in list order, so you can stop and pick up where you left off. **All movies** lets you review or change any grade.
+- `←` and `→` move without grading, `Delete` clears a grade, `Ctrl+Z` undoes, and `/` jumps to the search box (a number or part of a title).
+- Every grade saves the moment you give it, to **`data/ratings.json`** (like `{ "12": "B+", "40": "S" }`, keyed by list number). If a save ever fails, the page undoes its change and tells you.
+
+**This only exists on your computer.** The `/rate` page and the saving service are added by `scripts/dev-ratings.mjs` only while `npm run dev` runs. They are not in the built site, so the live site has no rating page and nothing visitors can use to change a grade. The saving service also refuses requests from other websites.
+
+Your grades stay in step when you use `npm run add` to insert a movie, because the command shifts `data/ratings.json` along with everything else. `ratings.json` is meant to be committed.
+
+### Where your grades show on the site
+
+Once `data/ratings.json` is committed and deployed, visitors see your grades (the rating tool itself still never goes live):
+
+- **A grade badge** on the top right of every poster (S grades get a thicker gold ring).
+- **"My grade"** in each movie's detail view. Click it to see every movie with that grade.
+- **A Grade filter** in the filters, listing S+ down to F- with counts, plus one-click buttons for a whole letter (the **S** button picks S+, S and S-). Like decades, grades always narrow the list: a movie only has one grade, so several chosen grades mean "any of them".
+- **A "Best rated" sort** next to My order and Release order: best grade first, with ties in your list order.
+- **A "My grades" section on the Stats page**: how many are graded, your average and most common grade, a bar for every grade (each one links to those movies), and your highest and lowest rated movies.
+- Grades are part of shared links too, for example `?grade=A%2B&grade=A&sort=grade`.
+
+To change a grade later, run `npm run dev`, open `/rate`, switch to **All movies**, jump to the movie, and click a new grade. Then commit and push `data/ratings.json`.
+
 ## Checking your work
 
 ```bash
-npm run test:filters   # 37 checks on filtering, ordering, search, sharing, stats and descriptions
-npm run test:add       # 20 checks that npm run add moves every number correctly
+npm run test:filters   # 46 checks on filtering, ordering, search, grades, sharing, stats and descriptions
+npm run test:add       # 20 checks that npm run add moves every number and grade correctly
+npm run test:ratings   # 13 checks on the grade scale, typing a grade, and the local saving service
 npm run build          # makes the real site in the dist folder (this is what Vercel does)
 npm run preview        # opens that built site so you can click around
 ```

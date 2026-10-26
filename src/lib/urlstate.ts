@@ -3,6 +3,7 @@
 // Every option repeats its own parameter, because names can contain commas.
 // Parameters this file doesn't own are left alone.
 import { FACETS, emptySelection, type MatchMode, type Selected } from './filters.ts';
+import { isGrade } from './grades.ts';
 import type { SortOrder } from './order.ts';
 
 export interface ViewState {
@@ -19,11 +20,17 @@ export function readState(search: string): ViewState {
   const params = new URLSearchParams(search);
   const selected = emptySelection();
   for (const { key } of FACETS) selected[key] = [...new Set(params.getAll(key))];
+  // In an address a bare "+" means a space, so a hand-typed ?grade=B+ arrives as "B ".
+  // Read that as B+, and ignore anything that is not a real grade.
+  selected.grade = [
+    ...new Set(selected.grade.map((g) => (g.endsWith(' ') ? `${g.trimEnd()}+` : g)).filter(isGrade)),
+  ];
   const movie = Number(params.get('movie'));
+  const sort = params.get('sort');
   return {
     selected,
     mode: params.get('match') === 'strict' ? 'strict' : 'loose',
-    order: params.get('sort') === 'release' ? 'release' : 'mine',
+    order: sort === 'release' ? 'release' : sort === 'grade' ? 'rating' : 'mine',
     query: params.get('q') ?? '',
     movie: Number.isInteger(movie) && movie > 0 ? movie : null,
   };
@@ -43,6 +50,7 @@ export function writeState(search: string, state: ViewState): string {
   for (const { key } of FACETS) for (const name of state.selected[key]) params.append(key, name);
   if (state.mode === 'strict') params.set('match', 'strict');
   if (state.order === 'release') params.set('sort', 'release');
+  if (state.order === 'rating') params.set('sort', 'grade');
   if (state.movie !== null) params.set('movie', String(state.movie));
   const text = params.toString();
   return text ? `?${text}` : '';

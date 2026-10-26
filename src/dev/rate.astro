@@ -1,0 +1,13 @@
+---
+// LOCAL ONLY. This page is added by scripts/dev-ratings.mjs when you run `npm run dev`.
+// It is not in src/pages, so it is never built or deployed.
+import Base from '../layouts/Base.astro';
+import RateStation from '../components/dev/RateStation';
+import { loadGridMovies } from '../lib/load';
+
+const movies = loadGridMovies();
+---
+
+<Base title="Rate your movies (local only)" description="A private rating tool that only runs on the developer's own computer.">
+  <RateStation client:load movies={movies} />
+</Base>

@@ -31,8 +31,10 @@ const state = () => ({
   listText: LIST,
   movies: MOVIES.map((m) => ({ ...m })),
   overrides: { 3: 903, 5: { officialTitle: 'Echo by hand' } },
+  ratings: { 2: 'A', 3: 'B+', 5: 'S-' },
   batches: { 'batch-fixes.txt': '# note\n3    903   # Charlie\n5    905   # Echo' },
 });
+const NONE = { listLines: 0, movies: 0, overrides: 0, ratings: 0, batchLines: 0 };
 
 console.log('--- READING THE NEW LINES ---');
 
@@ -57,10 +59,11 @@ check('Insert in the middle: later movies shift in all four places, nothing else
   assert.deepEqual(Object.keys(out.overrides), ['4', '6']);
   assert.equal(out.overrides[4], 903);
   assert.equal(out.overrides[6].officialTitle, 'Echo by hand');
+  assert.deepEqual(out.ratings, { 2: 'A', 4: 'B+', 6: 'S-' }); // grades travel with their movies
   assert.equal(out.batches['batch-fixes.txt'], '# note\n4    903   # Charlie\n6    905   # Echo');
   assert.ok(out.listText.startsWith('# Header comment.'));
   assert.ok(out.listText.endsWith('# Foxtrot (a duplicate)'));
-  assert.deepEqual(out.totals, { listLines: 3, movies: 3, overrides: 2, batchLines: 2 });
+  assert.deepEqual(out.totals, { listLines: 3, movies: 3, overrides: 2, ratings: 2, batchLines: 2 });
 });
 
 check('Insert at number 1 shifts everything', () => {
@@ -74,9 +77,10 @@ check('Insert at number 1 shifts everything', () => {
 check('Insert at the very end (next number) changes no other movie', () => {
   const out = planInserts(state(), [one('6. Last (2030)')]);
   assert.deepEqual(numbersIn(out.listText), [1, 2, 3, 4, 5, 6]);
-  assert.deepEqual(out.totals, { listLines: 0, movies: 0, overrides: 0, batchLines: 0 });
+  assert.deepEqual(out.totals, NONE);
   assert.match(out.listText, /5\. Echo \(2005\)\n6\. Last \(2030\)\n\n# Dropped on purpose/);
   assert.deepEqual(out.overrides, state().overrides);
+  assert.deepEqual(out.ratings, state().ratings);
 });
 
 check('Several new movies at once each end up at the number you gave', () => {
@@ -88,6 +92,7 @@ check('Several new movies at once each end up at the number you gave', () => {
   assert.deepEqual(out.movies.map((m) => m.myTitle), ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo']);
   assert.deepEqual(out.movies.map((m) => m.number), [1, 3, 5, 6, 7]);
   assert.deepEqual(Object.keys(out.overrides), ['5', '7']);
+  assert.deepEqual(out.ratings, { 3: 'A', 5: 'B+', 7: 'S-' }); // Bravo, Charlie and Echo's grades followed them
 });
 
 check('A free number in a gap needs no shifting', () => {
@@ -96,11 +101,13 @@ check('A free number in a gap needs no shifting', () => {
     listText: LIST.replace('3. Charlie (2003)\n', ''),
     movies: MOVIES.filter((m) => m.number !== 3),
     overrides: {},
+    ratings: { 4: 'C' },
     batches: {},
   };
   const out = planInserts(gappy, [one('3. Filler (2010)')]);
   assert.deepEqual(numbersIn(out.listText), [1, 2, 3, 4, 5]);
-  assert.deepEqual(out.totals, { listLines: 0, movies: 0, overrides: 0, batchLines: 0 });
+  assert.deepEqual(out.totals, NONE);
+  assert.deepEqual(out.ratings, { 4: 'C' });
 });
 
 check('Original numbering styles ("2)" and "3 Title") survive a shift', () => {
@@ -109,6 +116,7 @@ check('Original numbering styles ("2)" and "3 Title") survive a shift', () => {
     listText: '1. A (2001)\n2) B (2002)\n3 C (2003)',
     movies: MOVIES.slice(0, 3),
     overrides: {},
+    ratings: {},
     batches: {},
   };
   const out = planInserts(styled, [one('2. Mid (2020)')]);
@@ -155,6 +163,11 @@ const real = {
   ),
 };
 const N = real.movies.length;
+// Your real ratings file may be empty today, so give every 7th movie a made-up grade (in memory only).
+const GRADE_CYCLE = ['S+', 'B', 'C-', 'A', 'D+', 'B-', 'F'];
+real.ratings = Object.fromEntries(
+  real.movies.filter((m) => m.number % 7 === 0).map((m) => [m.number, GRADE_CYCLE[(m.number / 7) % GRADE_CYCLE.length]]),
+);
 
 for (const rank of [1, 2, 53, 400, 624, N, N + 1]) {
   check(`Inserting at #${rank}: everything stays attached to the right movie`, () => {
@@ -179,6 +192,14 @@ for (const rank of [1, 2, 53, 400, 624, N, N + 1]) {
     assert.equal(Object.keys(out.overrides).length, Object.keys(real.overrides).length);
     for (const [k, v] of Object.entries(real.overrides)) assert.deepEqual(out.overrides[shift(Number(k))], v);
 
+    // every grade is still on its own movie, and none were lost or invented
+    assert.equal(Object.keys(out.ratings).length, Object.keys(real.ratings).length);
+    for (const [k, grade] of Object.entries(real.ratings)) {
+      const movie = real.movies.find((m) => m.number === Number(k));
+      const now = out.movies.find((m) => m.tmdbId === movie.tmdbId && m.myTitle === movie.myTitle);
+      assert.equal(out.ratings[now.number], grade, `${movie.myTitle} keeps its ${grade}`);
+    }
+
     // every fix-batch line still names the same movie as before
     for (const [name, text] of Object.entries(real.batches)) {
       const before = text.split('\n').filter((l) => /^\d+\s/.test(l));
@@ -199,7 +220,7 @@ check('Inserting at #624 in the real list moves exactly the movies from 624 to t
   assert.equal(out.totals.movies, N - 624 + 1);
   assert.equal(out.steps[0].moved, N - 624 + 1);
   console.log(
-    `      ${out.totals.movies} saved movies, ${out.totals.listLines} list lines, ${out.totals.overrides} overrides and ${out.totals.batchLines} fix-file lines moved down by one`,
+    `      ${out.totals.movies} saved movies, ${out.totals.listLines} list lines, ${out.totals.overrides} overrides, ${out.totals.ratings} grades (test ones) and ${out.totals.batchLines} fix-file lines moved down by one`,
   );
 });
 

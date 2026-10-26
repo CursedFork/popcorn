@@ -27,6 +27,7 @@ import FilterChips from './FilterChips';
 const OPTIONS: { value: SortOrder; label: string }[] = [
   { value: 'mine', label: 'My order' },
   { value: 'release', label: 'Release order' },
+  { value: 'rating', label: 'Best rated' },
 ];
 
 export default function MovieGrid({ movies }: { movies: GridMovie[] }) {
@@ -101,8 +102,9 @@ export default function MovieGrid({ movies }: { movies: GridMovie[] }) {
   // Choosing the first decade switches to release order, and clearing the last one
   // switches back. The toggle still lets you flip it whenever you like.
   function applySelection(next: Selected) {
-    if (selected.decade.length === 0 && next.decade.length > 0) setOrder('release');
-    if (selected.decade.length > 0 && next.decade.length === 0) setOrder('mine');
+    // (Only between my order and release order. If you chose "Best rated", it stays.)
+    if (selected.decade.length === 0 && next.decade.length > 0 && order === 'mine') setOrder('release');
+    if (selected.decade.length > 0 && next.decade.length === 0 && order === 'release') setOrder('mine');
     setSelected(next);
   }
 
@@ -112,6 +114,12 @@ export default function MovieGrid({ movies }: { movies: GridMovie[] }) {
       ...selected,
       [key]: has ? selected[key].filter((n) => n !== name) : [...selected[key], name],
     });
+  }
+
+  // Turns a whole group on or off in one step (the "S" button picks S+, S and S-).
+  function setGroup(key: FacetKey, names: string[], on: boolean) {
+    const without = selected[key].filter((n) => !names.includes(n));
+    applySelection({ ...selected, [key]: on ? [...without, ...names] : without });
   }
 
   // Adds a filter, and does nothing if it is already on (unlike toggle).
@@ -194,7 +202,14 @@ export default function MovieGrid({ movies }: { movies: GridMovie[] }) {
   useEffect(() => setSurpriseNote(''), [shown]);
 
   const panel = (
-    <FilterPanel facets={facets} selected={selected} mode={mode} onToggle={toggle} onModeChange={setMode} />
+    <FilterPanel
+      facets={facets}
+      selected={selected}
+      mode={mode}
+      onToggle={toggle}
+      onSetGroup={setGroup}
+      onModeChange={setMode}
+    />
   );
 
   return (

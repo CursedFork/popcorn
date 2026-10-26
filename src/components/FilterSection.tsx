@@ -1,4 +1,4 @@
-import { useId, useMemo, useState } from 'react';
+import { useId, useMemo, useState, type ReactNode } from 'react';
 import type { FacetOption } from '../lib/filters';
 
 const FIRST_SHOWN = 8; // the most common options, before you search or press "Show more"
@@ -10,11 +10,12 @@ interface Props {
   noun: string; // "genres", used in the search box label
   options: FacetOption[]; // already sorted
   selected: string[];
-  showAll: boolean; // decades are few, so they always list in full
+  showAll: boolean; // decades and grades are few, so they always list in full
   onToggle: (name: string) => void;
+  header?: ReactNode; // extra controls shown above the search box (the grade quick picks)
 }
 
-export default function FilterSection({ label, noun, options, selected, showAll, onToggle }: Props) {
+export default function FilterSection({ label, noun, options, selected, showAll, onToggle, header }: Props) {
   const id = useId();
   const [open, setOpen] = useState(false); // sections start closed
   const [query, setQuery] = useState('');
@@ -69,6 +70,7 @@ export default function FilterSection({ label, noun, options, selected, showAll,
       </h3>
 
       <div id={`${id}-panel`} role="region" aria-labelledby={`${id}-button`} hidden={!open} className="pb-4">
+        {header}
         <label htmlFor={`${id}-search`} className="sr-only">
           Search {noun}
         </label>

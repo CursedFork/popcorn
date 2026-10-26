@@ -6,6 +6,7 @@ import { readFileSync } from 'node:fs';
 import { toGridMovies, type RawMovie } from '../src/lib/movies.ts';
 import { buildFacets, filterMovies, describeResults, emptySelection, type Selected } from '../src/lib/filters.ts';
 import { sortMovies } from '../src/lib/order.ts';
+import { GRADES, gradeScore } from '../src/lib/grades.ts';
 import { readState, shareLink, writeState } from '../src/lib/urlstate.ts';
 import { canPickAnother, pickSurprise } from '../src/lib/surprise.ts';
 import { computeStats } from '../src/lib/stats.ts';
@@ -14,7 +15,8 @@ import { buildSearchIndex, suggest, titleMatches } from '../src/lib/search.ts';
 
 const raw: RawMovie[] = JSON.parse(readFileSync('src/data/movies.json', 'utf8'));
 const aliases = JSON.parse(readFileSync('data/aliases.json', 'utf8'));
-const movies = toGridMovies(raw, aliases);
+const ratings: Record<string, string> = JSON.parse(readFileSync('data/ratings.json', 'utf8'));
+const movies = toGridMovies(raw, aliases, ratings);
 const pick = (partial: Partial<Selected>): Selected => ({ ...emptySelection(), ...partial });
 const nums = (list: { number: number }[]) => list.map((m) => m.number);
 // Movies are found by title, so these tests don't care what number a movie has in your list.
@@ -381,7 +383,7 @@ check('Top 10 genres, stars, directors and studios match the raw data (studios a
 
 check('Every bar links to a home-page view with exactly that many movies', () => {
   let bars = 0;
-  for (const list of [stats.byDecade, stats.genres, stats.stars, stats.directors, stats.studios]) {
+  for (const list of [stats.byDecade, stats.grades, stats.genres, stats.stars, stats.directors, stats.studios]) {
     for (const row of list) {
       const view = readState(new URL(row.href, 'https://x.test').search);
       const got = filterMovies(movies, view.selected, view.mode, view.query).filter((m) => !m.comingSoon || list !== stats.byDecade);
@@ -392,6 +394,105 @@ check('Every bar links to a home-page view with exactly that many movies', () =>
   const decadeLink = readState(new URL(stats.byDecade[0].href, 'https://x.test').search);
   assert.equal(decadeLink.order, 'release');
   console.log(`      checked ${bars} bars; decade links open in release order`);
+});
+
+console.log('\n--- YOUR GRADES ---');
+
+const rawGrade = (m: RawMovie) => ratings[m.number] ?? null;
+const gradedRaw = raw.filter((m) => rawGrade(m));
+
+check('Every graded movie carries its grade; others carry none; junk grades are ignored', () => {
+  assert.equal(movies.filter((m) => m.rating).length, gradedRaw.length);
+  for (const m of movies) assert.equal(m.rating, ratings[m.number] ?? null);
+  const unrated = movies.filter((m) => !m.rating);
+  const junk = toGridMovies(raw.slice(0, 3), aliases, { 1: 'Z', 2: 'b', 3: 'A+' });
+  assert.deepEqual(junk.map((m) => m.rating), [null, null, 'A+']);
+  console.log(`      ${gradedRaw.length} of ${movies.length} graded; not graded: ${unrated.map((m) => `#${m.number} ${m.title}`).join(', ')}`);
+});
+
+check('The Grade filter lists the grades best to worst, with counts from the whole list', () => {
+  const options = buildFacets(movies).grade;
+  assert.deepEqual(options.map((o) => o.name), GRADES.filter((g) => gradedRaw.some((m) => rawGrade(m) === g)));
+  for (const o of options) assert.equal(o.count, gradedRaw.filter((m) => rawGrade(m) === o.name).length);
+  assert.equal(options.reduce((s, o) => s + o.count, 0), gradedRaw.length);
+});
+
+check('Picking grades narrows the list, and several grades mean ANY of them', () => {
+  const one = filterMovies(movies, pick({ grade: ['A+'] }), 'loose');
+  assert.deepEqual(nums(one), gradedRaw.filter((m) => rawGrade(m) === 'A+').map((m) => m.number));
+  const two = filterMovies(movies, pick({ grade: ['S+', 'A+'] }), 'strict'); // strict does not break grades
+  assert.equal(two.length, gradedRaw.filter((m) => ['S+', 'A+'].includes(rawGrade(m)!)).length);
+  assert.ok(one.every((m) => m.rating === 'A+'));
+});
+
+check('A whole letter (S+, S and S-) selects exactly the S range', () => {
+  const sRange = filterMovies(movies, pick({ grade: ['S+', 'S', 'S-'] }), 'loose');
+  assert.equal(sRange.length, gradedRaw.filter((m) => rawGrade(m)!.startsWith('S')).length);
+  assert.ok(sRange.every((m) => m.rating!.startsWith('S')));
+});
+
+check('Grade combines with other filters: a genre, a decade, and a search all narrow further', () => {
+  const horrorA = filterMovies(movies, pick({ grade: ['A+', 'A', 'A-'], genre: ['Horror'] }), 'loose');
+  const expected = gradedRaw.filter((m) => rawGrade(m)!.startsWith('A') && m.genres.includes('Horror'));
+  assert.equal(horrorA.length, expected.length);
+  const decade = filterMovies(movies, pick({ grade: ['B'], decade: ['1990s'] }), 'loose');
+  assert.equal(decade.length, gradedRaw.filter((m) => rawGrade(m) === 'B' && m.decade === '1990s').length);
+  const searched = filterMovies(movies, pick({ grade: ['B'] }), 'loose', 'the');
+  assert.equal(searched.length, gradedRaw.filter((m) => rawGrade(m) === 'B' && /the/i.test(m.officialTitle ?? m.myTitle)).length);
+  console.log(`      A-range horror: ${horrorA.length}, B movies from the 1990s: ${decade.length}`);
+});
+
+check('Best rated order: best grade first, ties in your number order, ungraded last', () => {
+  const sorted = sortMovies(movies, 'rating');
+  assert.equal(sorted.length, movies.length);
+  for (let i = 1; i < sorted.length; i++) {
+    const a = sorted[i - 1];
+    const b = sorted[i];
+    const sa = a.rating ? gradeScore(a.rating) : 0;
+    const sb = b.rating ? gradeScore(b.rating) : 0;
+    assert.ok(sa >= sb, `#${a.number} before #${b.number}`);
+    if (sa === sb) assert.ok(a.number < b.number, 'ties keep your order');
+  }
+  assert.equal(sorted[0].rating, 'S+');
+  assert.equal(sorted.at(-1)!.rating, null);
+  console.log(`      first: ${sorted.slice(0, 3).map((m) => `#${m.number} ${m.title} ${m.rating}`).join(' | ')}`);
+});
+
+check('Grades survive the page address, including the plus sign, and junk is ignored', () => {
+  const state = { selected: pick({ grade: ['A+', 'S-', 'B'] }), mode: 'loose' as const, order: 'rating' as const, query: '', movie: 7 };
+  const query = writeState('', state);
+  assert.equal(query, '?grade=A%2B&grade=S-&grade=B&sort=grade&movie=7');
+  assert.deepEqual(readState(query), state);
+  assert.deepEqual(readState('?grade=B+').selected.grade, ['B+']); // typed by hand: "+" arrives as a space
+  assert.deepEqual(readState('?grade=A%2B&grade=Z&grade=b&grade=A%2B').selected.grade, ['A+']);
+  assert.equal(readState('?sort=grade').order, 'rating');
+  assert.equal(writeState('', { ...state, selected: emptySelection(), movie: null }), '?sort=grade');
+});
+
+check('The summary sentence says which grades are showing', () => {
+  const base = { shown: 12, total: movies.length, mode: 'loose' as const, order: 'rating' as const };
+  const a = describeResults({ ...base, selected: pick({ grade: ['S+', 'S'] }) });
+  const b = describeResults({ ...base, selected: pick({ grade: ['A'], decade: ['1990s'], genre: ['Horror'] }), order: 'mine' });
+  assert.match(a, /graded S\+ or S, best grade first\./);
+  assert.match(b, /graded A, released in the 1990s that match ANY of: Horror, in Andrew's order\./);
+  console.log(`      "${a}"`);
+  console.log(`      "${b}"`);
+});
+
+check('Stats: grade counts, average, most common, best and worst all match the raw ratings', () => {
+  const counts = new Map<string, number>();
+  for (const m of gradedRaw) counts.set(rawGrade(m)!, (counts.get(rawGrade(m)!) ?? 0) + 1);
+  assert.deepEqual(stats.grades.map((g) => [g.name, g.count]), GRADES.filter((g) => counts.has(g)).map((g) => [g, counts.get(g)]));
+  assert.equal(stats.graded, gradedRaw.length);
+  const mean = gradedRaw.reduce((s, m) => s + gradeScore(rawGrade(m)!), 0) / gradedRaw.length;
+  assert.equal(stats.averageGrade!.score, mean);
+  assert.equal(stats.averageGrade!.grade, GRADES[GRADES.length - Math.round(mean)]);
+  const top = [...counts].sort((a, b) => b[1] - a[1] || GRADES.indexOf(a[0]) - GRADES.indexOf(b[0]))[0];
+  assert.deepEqual([stats.commonGrade!.grade, stats.commonGrade!.count], top);
+  assert.equal(stats.best!.grade, GRADES.find((g) => counts.has(g)));
+  assert.equal(stats.worst!.grade, [...GRADES].reverse().find((g) => counts.has(g)));
+  assert.equal(stats.best!.movies.length, counts.get(stats.best!.grade));
+  console.log(`      average ${stats.averageGrade!.grade} (${stats.averageGrade!.score.toFixed(1)}), most common ${stats.commonGrade!.grade} (${stats.commonGrade!.count}), best ${stats.best!.grade} x${stats.best!.movies.length}, worst ${stats.worst!.grade} x${stats.worst!.movies.length}`);
 });
 
 console.log('\n--- SHARE LINK ROUND TRIP ---');

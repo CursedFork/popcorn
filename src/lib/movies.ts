@@ -1,5 +1,6 @@
 // What the poster grid knows about each movie. This file has no data imports,
 // so the logic can be tested from the command line. load.ts reads the real data.
+import { isGrade } from './grades.ts';
 
 export interface GridMovie {
   number: number; // your list number, never changed
@@ -9,6 +10,7 @@ export interface GridMovie {
   decade: string | null; // like "1990s"
   posterPath: string | null;
   comingSoon: boolean;
+  rating: string | null; // your grade, like "B+", or null if not graded
   genres: string[];
   stars: string[];
   directors: string[];
@@ -31,7 +33,12 @@ export interface RawMovie {
 }
 
 // data/aliases.json maps variant studio names to one display name.
-export function toGridMovies(raw: RawMovie[], aliases: Record<string, string>): GridMovie[] {
+// data/ratings.json maps a list number to your grade, like { "12": "B+" }.
+export function toGridMovies(
+  raw: RawMovie[],
+  aliases: Record<string, string>,
+  ratings: Record<string, string> = {},
+): GridMovie[] {
   const merge = (names: string[]) => [...new Set(names.map((n) => aliases[n] ?? n))];
   return raw
     .map((m) => ({
@@ -42,6 +49,7 @@ export function toGridMovies(raw: RawMovie[], aliases: Record<string, string>): 
       decade: m.decade,
       posterPath: m.posterPath,
       comingSoon: m.status === 'unreleased',
+      rating: isGrade(ratings[m.number]) ? ratings[m.number] : null, // ignore anything that isn't a real grade
       genres: m.genres,
       stars: m.stars,
       directors: m.directors,

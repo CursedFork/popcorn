@@ -1,6 +1,7 @@
 // Numbers for the Stats page, covering the whole list.
 // Anything based on a release year leaves out movies that aren't released yet.
 import { buildFacets, emptySelection, type FacetKey } from './filters.ts';
+import { GRADES, gradeScore } from './grades.ts';
 import type { GridMovie } from './movies';
 import { writeState } from './urlstate.ts';
 
@@ -22,6 +23,13 @@ export interface Stats {
   oldest: GridMovie | null;
   newest: GridMovie | null;
   averageYear: number | null;
+  // Your grades, best to worst. Only grades you actually gave are listed.
+  grades: Count[];
+  graded: number;
+  averageGrade: { grade: string; score: number } | null; // score runs 21 (S+) down to 1 (F-)
+  commonGrade: { grade: string; count: number } | null;
+  best: { grade: string; movies: GridMovie[] } | null; // every movie with your highest grade
+  worst: { grade: string; movies: GridMovie[] } | null; // every movie with your lowest grade
 }
 
 // A link to the home page showing just this one filter. Decades link to release
@@ -55,7 +63,26 @@ export function computeStats(movies: GridMovie[], top = 10): Stats {
   const decadeCounts = new Map<string, number>();
   for (const m of released) if (m.decade) decadeCounts.set(m.decade, (decadeCounts.get(m.decade) ?? 0) + 1);
 
+  const graded = movies.filter((m) => m.rating);
+  const gradeCounts = new Map<string, number>();
+  for (const m of graded) gradeCounts.set(m.rating!, (gradeCounts.get(m.rating!) ?? 0) + 1);
+  const grades = GRADES.filter((g) => gradeCounts.has(g)).map((g) => ({
+    name: g,
+    count: gradeCounts.get(g)!,
+    href: filterLink('grade', g),
+  }));
+  const meanScore = graded.length ? graded.reduce((sum, m) => sum + gradeScore(m.rating!), 0) / graded.length : null;
+  const common = [...grades].sort((a, b) => b.count - a.count || GRADES.indexOf(a.name) - GRADES.indexOf(b.name))[0];
+  const pick = (grade: string | undefined) =>
+    grade ? { grade, movies: graded.filter((m) => m.rating === grade) } : null;
+
   return {
+    grades,
+    graded: graded.length,
+    averageGrade: meanScore === null ? null : { grade: GRADES[GRADES.length - Math.round(meanScore)], score: meanScore },
+    commonGrade: common ? { grade: common.name, count: common.count } : null,
+    best: pick(grades[0]?.name),
+    worst: pick(grades.at(-1)?.name),
     total: movies.length,
     released: released.length,
     notReleased: movies.length - released.length,

@@ -1,6 +1,7 @@
 // Inserts new movies at chosen ranks and keeps every list number in step.
-// Your numbers are stored in four places, and all of them move together:
-//   data/movies.txt, src/data/movies.json, data/overrides.json, data/batch-fixes*.txt
+// Your numbers are stored in five places, and all of them move together:
+//   data/movies.txt, src/data/movies.json, data/overrides.json, data/batch-fixes*.txt,
+//   and data/ratings.json (your grades)
 // This file only works on text and objects in memory. add.mjs does the reading and writing.
 import { parseList } from './parse.mjs';
 import { normalize } from './match.mjs';
@@ -34,13 +35,15 @@ export function parseNewMovies(texts) {
   return { inserts, problems };
 }
 
-// state:   { listText, movies, overrides, batches }   (batches is { "batch-fixes.txt": "text", ... })
+// state:   { listText, movies, overrides, batches, ratings }
+//          (batches is { "batch-fixes.txt": "text", ... }; ratings is { "12": "B+", ... } and may be left out)
 // inserts: [{ rank, title, year, line }]
 // Returns the new state plus a report. Throws a plain-language Error if anything looks wrong.
 export function planInserts(state, inserts, { allowDuplicate = false } = {}) {
   let lines = state.listText.split(/\r?\n/);
   let movies = state.movies.map((m) => ({ ...m }));
   let overrides = { ...state.overrides };
+  let ratings = { ...(state.ratings ?? {}) };
   let batches = { ...state.batches };
   const steps = [];
   const shifts = []; // for each insert: { rank, pushes }, to work out where every old number ended up
@@ -87,6 +90,10 @@ export function planInserts(state, inserts, { allowDuplicate = false } = {}) {
     for (const [key, value] of Object.entries(overrides)) next[shift(Number(key))] = value;
     overrides = next;
 
+    const nextRatings = {};
+    for (const [key, grade] of Object.entries(ratings)) nextRatings[shift(Number(key))] = grade;
+    ratings = nextRatings;
+
     for (const [name, text] of Object.entries(batches)) {
       batches[name] = text
         .split('\n')
@@ -115,6 +122,7 @@ export function planInserts(state, inserts, { allowDuplicate = false } = {}) {
     listLines: originalLines.filter((l) => ACTIVE.test(l) && moves(Number(l.match(ACTIVE)[1]))).length,
     movies: state.movies.filter((m) => moves(m.number)).length,
     overrides: Object.keys(state.overrides).filter((k) => moves(Number(k))).length,
+    ratings: Object.keys(state.ratings ?? {}).filter((k) => moves(Number(k))).length,
     batchLines: Object.values(state.batches)
       .flatMap((text) => text.split('\n'))
       .filter((l) => BATCH.test(l) && moves(Number(l.match(BATCH)[1]))).length,
@@ -122,7 +130,8 @@ export function planInserts(state, inserts, { allowDuplicate = false } = {}) {
 
   movies.sort((a, b) => a.number - b.number);
   const sortedOverrides = Object.fromEntries(Object.entries(overrides).sort((a, b) => a[0] - b[0]));
-  return { listText: lines.join('\n'), movies, overrides: sortedOverrides, batches, steps, totals };
+  const sortedRatings = Object.fromEntries(Object.entries(ratings).sort((a, b) => a[0] - b[0]));
+  return { listText: lines.join('\n'), movies, overrides: sortedOverrides, ratings: sortedRatings, batches, steps, totals };
 }
 
 // The saved data must describe exactly the movies on the list, or renumbering could misalign them.

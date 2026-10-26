@@ -7,8 +7,9 @@ import { posterSrc, posterSrcSet } from '../lib/poster';
 import IconButton from './IconButton';
 import PosterPlaceholder from './PosterPlaceholder';
 import ShareButton from './ShareButton';
+import GradeBadge from './GradeBadge';
 
-type NameKey = Extract<FacetKey, 'genre' | 'star' | 'director' | 'studio'>;
+type NameKey = Extract<FacetKey, 'grade' | 'genre' | 'star' | 'director' | 'studio'>;
 
 interface Props {
   movie: GridMovie | null;
@@ -137,6 +138,19 @@ function Detail({ movie, onClose, onFilter, getShareLink, shareTitle, surprise, 
               </span>
             )}
           </p>
+          {movie.rating && (
+            <p className="mt-2 flex items-center gap-2 text-sm text-muted">
+              My grade
+              <button
+                type="button"
+                onClick={() => onFilter('grade', movie.rating!)}
+                aria-label={`Show movies graded ${movie.rating}`}
+                className="rounded-full transition-transform hover:scale-105"
+              >
+                <GradeBadge grade={movie.rating} large />
+              </button>
+            </p>
+          )}
         </div>
         <IconButton label="Close details" onClick={onClose}>
           <svg aria-hidden="true" viewBox="0 0 20 20" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">

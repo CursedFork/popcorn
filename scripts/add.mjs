@@ -4,9 +4,9 @@
 // npm run add -- --dry ...                           show the plan, change nothing
 //
 // Everything from the new rank onward moves down by one, and the numbers are updated in
-// the list, the saved data, overrides.json and the fix-batch files together. A backup of
+// the list, the saved data, overrides.json, ratings.json and the fix-batch files together. A backup of
 // each file is kept in data/backups/ first. Then the lookup runs for the new movie.
-import { copyFileSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join } from 'node:path';
 import { paths, readJson, run } from './lib/run.mjs';
 import { checkInStep, parseNewMovies, planInserts } from './lib/insert.mjs';
@@ -41,11 +41,13 @@ async function main() {
   if (problems.length) throw new Error(problems.join('\n'));
   if (inserts.length === 0) throw new Error('I did not find any movie lines to add.');
 
+  const ratingsPath = join(dataDir, 'ratings.json');
   const batchNames = readdirSync(dataDir).filter((f) => /^batch-fixes.*\.txt$/.test(f)).sort();
   const state = {
     listText: readFileSync(p.list, 'utf8'),
     movies: await readJson(p.out, []),
     overrides: await readJson(p.overrides, {}),
+    ratings: await readJson(ratingsPath, {}),
     batches: Object.fromEntries(batchNames.map((f) => [f, readFileSync(join(dataDir, f), 'utf8')])),
   };
 
@@ -62,7 +64,9 @@ async function main() {
     );
   }
   const t = plan.totals;
-  console.log(`\n  Number changes: ${t.listLines} lines in movies.txt, ${t.movies} saved movies, ${t.overrides} overrides, ${t.batchLines} lines in fix files.`);
+  console.log(
+    `\n  Number changes: ${t.listLines} lines in movies.txt, ${t.movies} saved movies, ${t.overrides} overrides, ${t.ratings} ratings, ${t.batchLines} lines in fix files.`,
+  );
   console.log(`  The lookup will make about ${inserts.length * 2} TMDB requests for the new movie${inserts.length > 1 ? 's' : ''}.`);
   console.log(`  After this the list has ${plan.movies.length + inserts.length} movies.`);
   if (opts.dry) {
@@ -74,7 +78,7 @@ async function main() {
   const stamp = new Date().toISOString().replace(/[:.]/g, '-');
   const backup = join(dataDir, 'backups', stamp);
   mkdirSync(backup, { recursive: true });
-  for (const file of [p.list, p.overrides, p.out, ...batchNames.map((f) => join(dataDir, f))]) {
+  for (const file of [p.list, p.overrides, p.out, ratingsPath, ...batchNames.map((f) => join(dataDir, f))]) {
     try {
       copyFileSync(file, join(backup, basename(file)));
     } catch {
@@ -85,6 +89,7 @@ async function main() {
   write(p.list, plan.listText);
   write(p.out, json(plan.movies));
   write(p.overrides, json(plan.overrides));
+  if (existsSync(ratingsPath)) write(ratingsPath, json(plan.ratings));
   for (const [name, text] of Object.entries(plan.batches)) write(join(dataDir, name), text);
   console.log(`\nRenumbered. Backup of the old files: ${backup}\n`);
 

@@ -2,12 +2,14 @@
 import type { GridMovie } from './movies';
 import type { SortOrder } from './order';
 import { filterByTitle } from './search.ts';
+import { GRADES } from './grades.ts';
 
-export type FacetKey = 'decade' | 'genre' | 'star' | 'director' | 'studio';
+export type FacetKey = 'decade' | 'grade' | 'genre' | 'star' | 'director' | 'studio';
 export type MatchMode = 'loose' | 'strict';
 
 export const FACETS: { key: FacetKey; label: string; noun: string }[] = [
   { key: 'decade', label: 'Decade', noun: 'decades' },
+  { key: 'grade', label: 'Grade', noun: 'grades' },
   { key: 'genre', label: 'Genre', noun: 'genres' },
   { key: 'star', label: 'Stars', noun: 'stars' },
   { key: 'director', label: 'Directors', noun: 'directors' },
@@ -23,6 +25,7 @@ export type Facets = Record<FacetKey, FacetOption[]>;
 
 export const emptySelection = (): Selected => ({
   decade: [],
+  grade: [],
   genre: [],
   star: [],
   director: [],
@@ -38,6 +41,8 @@ function valuesOf(movie: GridMovie, key: FacetKey): string[] {
   switch (key) {
     case 'decade':
       return movie.decade ? [movie.decade] : [];
+    case 'grade':
+      return movie.rating ? [movie.rating] : [];
     case 'genre':
       return movie.genres;
     case 'star':
@@ -60,19 +65,23 @@ export function buildFacets(movies: GridMovie[]): Facets {
       }
     }
     const options = [...counts].map(([name, count]) => ({ name, count }));
-    // Decades read oldest to newest. Everything else: most common first, then A to Z.
+    // Decades read oldest to newest, and grades read best to worst (S+ down to F-).
+    // Everything else: most common first, then A to Z.
     options.sort(
       key === 'decade'
         ? (a, b) => a.name.localeCompare(b.name)
-        : (a, b) => b.count - a.count || a.name.localeCompare(b.name),
+        : key === 'grade'
+          ? (a, b) => GRADES.indexOf(a.name) - GRADES.indexOf(b.name)
+          : (a, b) => b.count - a.count || a.name.localeCompare(b.name),
     );
     facets[key] = options;
   }
   return facets;
 }
 
-// The search box narrows by title, and decade narrows too: a movie must be in ANY
-// of the chosen decades. Genres, stars, directors and studios are pooled together:
+// The search box narrows by title. Decade and grade narrow too: a movie must be in ANY of
+// the chosen decades, and have ANY of the chosen grades (a movie only has one grade, so
+// "all of" would never make sense). Genres, stars, directors and studios are pooled together:
 //   loose  = the movie matches ANY of the picks
 //   strict = the movie matches EVERY one of the picks
 export function filterMovies(
@@ -87,6 +96,9 @@ export function filterMovies(
 
   return filterByTitle(movies, query).filter((movie) => {
     if (selected.decade.length && !(movie.decade && selected.decade.includes(movie.decade))) {
+      return false;
+    }
+    if (selected.grade.length && !(movie.rating && selected.grade.includes(movie.rating))) {
       return false;
     }
     if (picks.length === 0) return true;
@@ -110,16 +122,20 @@ export function describeResults(args: {
   const query = (args.query ?? '').trim();
   const picks = OTHER_KEYS.flatMap((key) => selected[key]);
   const noun = shown === 1 ? 'movie' : 'movies';
-  const orderText = order === 'mine' ? "in Andrew's order" : 'oldest release first';
+  const orderText =
+    order === 'mine' ? "in Andrew's order" : order === 'rating' ? 'best grade first' : 'oldest release first';
 
-  if (picks.length === 0 && selected.decade.length === 0 && !query) {
+  if (picks.length === 0 && selected.decade.length === 0 && selected.grade.length === 0 && !query) {
     return `Showing all ${total} movies, ${orderText}.`;
   }
 
   let sentence = `Showing ${shown} of ${total} ${noun}`;
   if (query) sentence += ` with “${query}” in the title`;
+  if (selected.grade.length) {
+    sentence += `${query ? ',' : ''} graded ${joinOr(selected.grade)}`;
+  }
   if (selected.decade.length) {
-    sentence += `${query ? ',' : ''} released in the ${joinOr(selected.decade)}`;
+    sentence += `${query || selected.grade.length ? ',' : ''} released in the ${joinOr(selected.decade)}`;
   }
   if (picks.length) {
     sentence += ` that match ${mode === 'strict' ? 'ALL' : 'ANY'} of: ${picks.join(', ')}`;
