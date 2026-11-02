@@ -37706,6 +37706,46 @@
   },
   {
     "number": 995,
+    "myTitle": "Backrooms",
+    "input": {
+      "title": "Backrooms",
+      "year": 2026,
+      "override": null
+    },
+    "tmdbId": 1083381,
+    "officialTitle": "Backrooms",
+    "releaseDate": "2026-05-27",
+    "year": 2026,
+    "decade": "2020s",
+    "genres": [
+      "Horror",
+      "Mystery",
+      "Science Fiction"
+    ],
+    "overview": "A strange doorway appears in the basement of a furniture showroom.",
+    "posterPath": "/rhGx6E3qRNMgj3i5su2oukNHwIQ.jpg",
+    "stars": [
+      "Chiwetel Ejiofor",
+      "Renate Reinsve",
+      "Finn Bennett",
+      "Lukita Maxwell",
+      "Mark Duplass"
+    ],
+    "directors": [
+      "Kane Parsons"
+    ],
+    "studios": [
+      "Atomic Monster",
+      "21 Laps Entertainment",
+      "A24",
+      "Phobos",
+      "The North Road Company"
+    ],
+    "status": "matched",
+    "fetchedAt": "2026-11-02"
+  },
+  {
+    "number": 996,
     "myTitle": "Avengers: Doomsday",
     "input": {
       "title": "Avengers: Doomsday",
